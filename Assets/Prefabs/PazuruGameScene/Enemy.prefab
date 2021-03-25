@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6581353010276576965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224619215219015915}
+  - component: {fileID: 159165166353345765}
+  - component: {fileID: 4054704800851703815}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &224619215219015915
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581353010276576965}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &159165166353345765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581353010276576965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71888ae1a754f2240b8a1b9b64b22f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _HP: {fileID: 4588813986919140312, guid: 707acb4ffe4648d47bd3b152693372e9, type: 3}
+  _TimeLimit: {fileID: -7775947978985401994, guid: 969a727e676e0004fb28de0aece680d1,
+    type: 3}
+  _Sprite:
+  - {fileID: 21300000, guid: dbb0c3db98d11684981c7e83aa7637a2, type: 3}
+  - {fileID: 21300000, guid: 0e0ea4207281a3440b5f12bc336bbea5, type: 3}
+  - {fileID: 21300000, guid: 72cb011cf8ca5a947bbedaf2be4a1406, type: 3}
+  _EnemyImage: {fileID: 7736264614937943605, guid: bea1241f22eeda340bddc3f266d3ecc0,
+    type: 3}
+  _MaxHpPoint: 5000
+  _NowHpPoint: 5000
+  _EnemyTransform: {fileID: 224619215219015915}
+  _EnemyAttackCountObject: {fileID: 6607655389719669822, guid: 3d8187e96e0317240965bf56e0463880,
+    type: 3}
+  NowTime: 0
+--- !u!222 &4054704800851703815
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6581353010276576965}
+  m_CullTransparentMesh: 0

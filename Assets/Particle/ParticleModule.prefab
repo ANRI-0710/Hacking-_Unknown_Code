@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8387714042612809695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8387714042612809632}
+  - component: {fileID: 8387714042612809633}
+  m_Layer: 5
+  m_Name: ParticleModule
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8387714042612809632
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8387714042612809695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8387714042612809633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8387714042612809695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72aad84daebbb834da0dad0e483bfe3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Particle: {fileID: 6617610484184635817, guid: 91524d1e0bf4ceb4da098d8933b3fb6a,
+    type: 3}
+  _GreenParticle: {fileID: 19800000, guid: 7a2b3c6dde1175a439506d7d2e259bbf, type: 3}
+  _EnemyAttackPartcle: {fileID: 8206540175009245365, guid: d1826803481f5254f9d081f05e265240,
+    type: 3}
+  _EnemyDestroy: {fileID: 2427730612081525324, guid: f677cfdf20bb70a468c737e19c991622,
+    type: 3}
+  _EnemyPop: {fileID: 19800000, guid: a27a781607ee88444b948f4a54b69343, type: 3}
+  _SpecialComboCross_Yoko: {fileID: 1377717004662795413, guid: ea0427d046e120a4cbf4b4f63adebe90,
+    type: 3}
+  _SpecialComboCross_Tate: {fileID: 5555800418255992990, guid: 7b88ec4fdef6b184b8fd1c0a64082385,
+    type: 3}
+  _PlayerAttackEffect: {fileID: 853764282409179030, guid: 0fbd0b805f621ad458aea747c1a51e0c,
+    type: 3}
+  vectorReturn: {fileID: 9068241105124603000, guid: 43977f53021c84d45b0a2e9544c06236,
+    type: 3}
+  _Bunung: {fileID: 6992323962132758222, guid: 16c55f5bb2791e54c96fd508fe7c674c, type: 3}
+  _ParticleTransform: {fileID: 853764282409179028, guid: 0fbd0b805f621ad458aea747c1a51e0c,
+    type: 3}
