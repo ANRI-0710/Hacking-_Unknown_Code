@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 攻撃クラス
+/// playerのパズル破壊時のダメージを管理するクラス
 /// </summary>
 public class Attack : MonoBehaviour
 {    

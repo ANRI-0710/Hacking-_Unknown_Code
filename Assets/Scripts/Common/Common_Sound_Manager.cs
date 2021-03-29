@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// サウンド管理クラス
+/// 共通で使用するサウンド管理クラス（パズルパート以外のSE・BGMの再生）
 /// </summary>
 /// 
+    //１つの関数から呼び出しできるようにenum変数を使用
     public enum BGM 
     {
         Title,
@@ -24,31 +23,30 @@ using UnityEngine;
     }
 
 public class Common_Sound_Manager : Singleton<Common_Sound_Manager>
-{
-    
+{   
+    //BGM
     [SerializeField]
-    private AudioClip BGM_Title_Page;
+    private AudioClip _BGM_Title_Page;
     [SerializeField]
-    private AudioClip BGM_Mypage;
+    private AudioClip _BGM_Mypage;
     [SerializeField]
-    private AudioClip PazuruGameSccene;
+    private AudioClip _BGM_PazuruGameSccene;
 
     //ポップアップ
     [SerializeField]
-    private AudioClip SE_Popup_Tap;
+    private AudioClip _SE_Popup_Tap;
     [SerializeField]
-    private AudioClip SE_Cancel_Tap;
-
+    private AudioClip _SE_Cancel_Tap;
     [SerializeField]
-    private AudioClip Start_Tap;
+    private AudioClip _SE_Start_Tap;
 
     //メッセンジャー
     [SerializeField]
-    private AudioClip Messeage;
-
+    private AudioClip _SE_Messeage;
+    
+    //オーディオソース
     [SerializeField]
-    private AudioSource _audioSource;
-
+    private AudioSource _AudioSource;
 
     /// <summary>
     /// シングルトンの起動
@@ -64,66 +62,55 @@ public class Common_Sound_Manager : Singleton<Common_Sound_Manager>
         DontDestroyOnLoad(this.gameObject);
     }
 
-
     private void Start()
     {
-
-        Instance._audioSource = this.GetComponent<AudioSource>();
-
+        Instance._AudioSource = this.GetComponent<AudioSource>();
     }
 
-
+    /// <summary>
+    /// 共通BGMの呼び出し
+    /// </summary>
+    /// <param name="bgm"></param>
     public void Sound_Play(BGM bgm) 
     {
-
         switch (bgm) 
         {
-
             case BGM.Title:
-                Instance._audioSource.clip = BGM_Title_Page;
-                Instance._audioSource.Play();
+                Instance._AudioSource.clip = _BGM_Title_Page;
+                Instance._AudioSource.Play();
                 break;
-
             case BGM.Mypage:
-                Instance._audioSource.clip = BGM_Mypage;
-                Instance._audioSource.Play();
+                Instance._AudioSource.clip = _BGM_Mypage;
+                Instance._AudioSource.Play();
                 break;
-
             case BGM.Pazuru:
                 break;
-
             case BGM.Stop:              
-                Instance._audioSource.Stop();
-                break;
-        
-        }
-    
+                Instance._AudioSource.Stop();
+                break;      
+        }    
     }
 
+    /// <summary>
+    /// 共通SEの呼び出し
+    /// </summary>
+    /// <param name="se"></param>
     public void SE_Play(SE se)
     {
         switch (se) 
         {
             case SE.Start:
-                Instance._audioSource.PlayOneShot(Start_Tap);
+                Instance._AudioSource.PlayOneShot(_SE_Start_Tap);
                 break;
-
             case SE.Popup_Tap:
-                Instance._audioSource.PlayOneShot(SE_Popup_Tap);
+                Instance._AudioSource.PlayOneShot(_SE_Popup_Tap);
                 break;
             case SE.Popup_Close:
-                Instance._audioSource.PlayOneShot(SE_Cancel_Tap);
+                Instance._AudioSource.PlayOneShot(_SE_Cancel_Tap);
                 break;
             case SE.Messeage:
-                Instance._audioSource.PlayOneShot(Messeage);
+                Instance._AudioSource.PlayOneShot(_SE_Messeage);
                 break;
-        }
-    
+        }    
     }
-
-
-
-
-
-   
 }

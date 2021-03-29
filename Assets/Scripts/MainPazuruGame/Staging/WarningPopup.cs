@@ -3,6 +3,10 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// パズルスタート時のWamingポップアップを出すクラス
+/// </summary>
+
 public class WarningPopup : Popup
 {
     [SerializeField]

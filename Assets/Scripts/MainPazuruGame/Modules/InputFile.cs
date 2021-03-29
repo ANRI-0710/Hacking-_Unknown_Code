@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 敵のステータスをファイルから読み込む
+/// 敵のステータス・メッセンジャー風会話をテキストファイルから読み込むクラス
 /// </summary>
 
 public class InputFile : MonoBehaviour

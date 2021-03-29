@@ -3,20 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// クリア・ゲームオーバー・敵の出現告知をするポップアップ
+/// </summary>
+
 public class Popup_Pazuru_Managear : Popup
 {  
     [SerializeField]
     private GameObject _Crear_Popup;
     [SerializeField]
     private GameObject _GameOver_Popup;
-
-    private void Start()
-    {
-        
-        
-
-
-    }
 
     public void ClearPopup() 
     {

@@ -3,26 +3,28 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-
+/// <summary>
+/// シーン遷移時のフェードイン・アウトを管理するクラス
+/// </summary>
 public class SceneChangeManager : MonoBehaviour
 {
+    //インスペクタ上から遷移したいシーン名を記入
     [SerializeField]
-    private string SceneName;
+    private string _SceneName;
 
     //フェードのパネル
     [SerializeField]
-    private GameObject _PanelObject;
-
-    private Image _Panel;
-
-    private float fadespeed = 0.1f;
-
+    private GameObject _PanelObject;    
+    //操作用のパネル
+    private Image _panel;
+    
+    //フェードインするスピード
+    private float _fadeSpeed = 0.1f;
     //パネルの色、不透明度
-    private float red;
-    private float green;
-    private float blue;
-    private float alfa;
-
+    private float _red;
+    private float _green;
+    private float _blue;
+    private float _alfa;    
     //フェードイン・アウトのフラグ管理
     private bool isFadeOut = false;
     public bool GetisFadeOut { get => isFadeOut; set { isFadeOut = value; } }
@@ -32,24 +34,22 @@ public class SceneChangeManager : MonoBehaviour
 
     private void Start()
     {
-        _Panel = _PanelObject.GetComponent<Image>();
+        _panel = _PanelObject.GetComponent<Image>();       
+        _red = _panel.color.r;
+        _green = _panel.color.g;
+        _blue = _panel.color.b;
+        _alfa = _panel.color.a;       
         
-        red = _Panel.color.r;
-        green = _Panel.color.g;
-        blue = _Panel.color.b;
-        alfa = _Panel.color.a;
-
-        Debug.Log("startalpa" + alfa);
-
-        StartCoroutine(FadeIn());
-        //FadeOut();
+        StartCoroutine(FadeIn());       
     }
 
+    //フェードイン開始のコルーチン（インスペクタボタンから呼び出すため）
     public void StartFadeIn() 
     {
         StartCoroutine(FadeIn());
     }
 
+    //フェードイン終了のコルーチン（インスペクタボタンから呼び出すため）
     public void StartFadeOut() {
        
         StartCoroutine(FadeOut());
@@ -58,43 +58,37 @@ public class SceneChangeManager : MonoBehaviour
     public void Retry_Button() 
     {
         StartCoroutine(FadeOut());
-
     }
 
     public IEnumerator FadeIn() 
     {
         while (true) 
         {
-            alfa -= fadespeed;
-            _Panel.color = new Color(red, green, blue, alfa);
+            _alfa -= _fadeSpeed;
+            _panel.color = new Color(_red, _green, _blue, _alfa);
             yield return new WaitForSeconds(0.05f);
-            //yield return null;
-            Debug.Log("alfa" + alfa);
+            Debug.Log("alfa" + _alfa);
 
-            if (alfa <= 0)
+            if (_alfa <= 0)
             {
-                _Panel.enabled = false;
-                //yield return new WaitForSeconds(3f);
-               // SceneChange("ListMessengerScene");
+                _panel.enabled = false;         
                 break;
             }
-
         }
-
     }
 
 
     public IEnumerator FadeOut()
     {
-        _Panel.enabled = true;
+        _panel.enabled = true;
         while (true)
         {
-            alfa += fadespeed;
-            _Panel.color = new Color(red, green, blue, alfa);
+            _alfa += _fadeSpeed;
+            _panel.color = new Color(_red, _green, _blue, _alfa);
             yield return new WaitForSeconds(0.05f);            
-            Debug.Log("alfa" + alfa);
+            Debug.Log("alfa" + _alfa);
 
-            if (alfa >= 1)
+            if (_alfa >= 1)
             {              
                 //yield return new WaitForSeconds(3f);
                 SceneChange();
@@ -107,15 +101,15 @@ public class SceneChangeManager : MonoBehaviour
 
     public IEnumerator Rerty()
     {
-        _Panel.enabled = true;
+        _panel.enabled = true;
         while (true)
         {
-            alfa += fadespeed;
-            _Panel.color = new Color(red, green, blue, alfa);
+            _alfa += _fadeSpeed;
+            _panel.color = new Color(_red, _green, _blue, _alfa);
             yield return new WaitForSeconds(0.05f);
-            Debug.Log("alfa" + alfa);
+            Debug.Log("alfa" + _alfa);
 
-            if (alfa >= 1)
+            if (_alfa >= 1)
             {
                 //yield return new WaitForSeconds(3f);
                 SceneRetry();
@@ -127,7 +121,7 @@ public class SceneChangeManager : MonoBehaviour
 
     public void SceneChange() 
     {
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(_SceneName);
     }
 
     public void SceneRetry() 

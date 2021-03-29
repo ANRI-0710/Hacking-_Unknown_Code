@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// タップしたかどうか、タップ座標を返すクラス
+/// 座標変換クラス
 /// </summary>
 /// 
 
