@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -91,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 3
+    m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -121,6 +123,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2717655711914802223}
+        m_TargetAssemblyTypeName: 
         m_MethodName: set_GetisButtonPress
         m_Mode: 6
         m_Arguments:
@@ -143,17 +146,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65932d54cb8e4324486d235fe409b49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _LimitButtonPrefab: {fileID: 5351922375997698986}
   Sprite:
-  - {fileID: 21300000, guid: 39f73e383ca7aa9488e7ad52edbf31fc, type: 3}
-  - {fileID: 21300000, guid: 943333c1375343b4bbb299ddb8cd46b9, type: 3}
-  - {fileID: 21300000, guid: f4d89780e1c1c9c47a8bc2b44ee87ba4, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
   - {fileID: 21300000, guid: 4c4aea483437abd428d2075ed3f50318, type: 3}
-  - {fileID: 21300000, guid: 0bfd073d58c6e56469b2a495dca53606, type: 3}
-  - {fileID: 21300000, guid: 57ccce1e532218b4c8c9f4a055677b67, type: 3}
-  - {fileID: 21300000, guid: f7b11750c3b30ad47a6f62e20dbda8b0, type: 3}
-  - {fileID: 21300000, guid: 223c8549feb722540a224b93a7bdebd9, type: 3}
-  - {fileID: 21300000, guid: 863acab62eef1254ca79a7d840205e63, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
   _Button: {fileID: 5351922375997698986}
 --- !u!1 &5050546097339472993
 GameObject:
@@ -215,11 +219,12 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cfb5568e1a393e34d90a5079f2060108, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7c0ca529023f684a80289ac4176aa8c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

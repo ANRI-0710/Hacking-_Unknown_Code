@@ -1,7 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+
+/// <summary>
+/// クリア・ゲームオーバー時のポップアップ表示
+/// </summary>
 
 public class UIManager : Popup
 {    
@@ -25,16 +27,11 @@ public class UIManager : Popup
         _GameOver_Popup.SetActive(true);
         PopupStart(_GameOver_Popup);
     }
-
     
     public void Retry()
     {
         SceneManager.LoadScene("MaypageScene");
     }
-
-
-
-
 
 
 }
