@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// パーティクル（エフェクトの管理）
+/// パーティクル（エフェクトの管理）クラス
 /// </summary>
 /// 
 

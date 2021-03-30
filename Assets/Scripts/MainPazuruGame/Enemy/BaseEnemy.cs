@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 敵クラス
+/// 敵のイメージ・HP・時間制限・攻撃カウントを管理するクラス
 /// </summary>
 
 public class BaseEnemy : Attack
@@ -41,6 +41,7 @@ public class BaseEnemy : Attack
     private bool _EnemyTimeOver = false;
     public bool GetEnemyTimeOver { get => _EnemyTimeOver; }
        
+    //敵の攻撃カウント
     private int EnemyAttackCount;
     public int GetEnemyAttackCount 
     {         
@@ -67,7 +68,7 @@ public class BaseEnemy : Attack
         set { HindrancePiece = value;}
     }
 
-    //TimeLimit
+    //時間制限
     private int EnemyTimeLimit;
     public int GetEnemyTimeLimit 
     {

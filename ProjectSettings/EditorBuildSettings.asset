@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: a60126ed31411a145bd6e1a9b3f02fb1
   - enabled: 1
-    path: Assets/Scenes/MaypageScene.unity
+    path: Assets/Scenes/MypageScene.unity
     guid: 7334e7c6d11d03f4993e196ee619a8c5
   - enabled: 1
     path: Assets/Scenes/ListMessengerScene.unity

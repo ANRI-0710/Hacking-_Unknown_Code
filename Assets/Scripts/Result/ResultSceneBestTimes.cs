@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// リザルト画面更新するクラス
+/// 最速クリアタイムを更新するクラス
 /// </summary>
 
 public class ResultSceneBestTimes : MonoBehaviour
@@ -39,17 +39,11 @@ public class ResultSceneBestTimes : MonoBehaviour
         ScoreTimeStageNum[8] = PlayerPrefs.GetInt(SaveData_Manager.KEY_BESTTIMESTAGE_9, 0);
         ScoreTimeStageNum[9] = PlayerPrefs.GetInt(SaveData_Manager.KEY_BESTTIMESTAGE_10, 0);
 
-
         for (var k = 0; k < TimeScoreText.Length; k++) 
         {
-
             var str = new TimeSpan(0, 0, ScoreTimeStageNum[k]);
-
             TimeScoreTextLine[k].text = str.ToString();
-
         }
-
-
 
     }
 

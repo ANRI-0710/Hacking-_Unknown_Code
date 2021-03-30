@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
-
+/// <summary>
+/// クリアデータの初期化を行うクラス
+/// </summary>
 public class DataInitialization : MonoBehaviour
 {
     public void SetData()
