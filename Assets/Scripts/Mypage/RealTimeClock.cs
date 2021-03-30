@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System;
+using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-///現在時刻を表示するクラス 
-/// </summary>
 public class RealTimeClock : MonoBehaviour
 {
     

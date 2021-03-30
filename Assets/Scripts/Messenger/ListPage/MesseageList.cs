@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
-/// <summary>
-/// メッセージリストを表示するクラス。クリアしたステージに応じて、表示するステージ数・既読マーク有無を変更する
-/// </summary>
 public class MesseageList : MonoBehaviour
 {
     [SerializeField]
@@ -13,6 +11,7 @@ public class MesseageList : MonoBehaviour
     private RectTransform _MesseagerectTransform;
 
     private GameObject[] _MesseageObject;     
+    private string StageName = "Messeage";
     private int StageListNo = 0;
     private int ClearNum;
 
@@ -21,21 +20,23 @@ public class MesseageList : MonoBehaviour
 
     [SerializeField]
     private Sprite[] _iconSprite;
-   
+
+    private GameObject _iCon;
     private Image[] _iconImage;
     private Text[] _iconName;
 
     private void Start()
     {
+        //PlayerPrefs.DeleteAll();
         //クリアナンバーの更新
         ClearNum = PlayerPrefs.GetInt(SaveData_Manager.KEY_CLEAR_NUM, 0);
 
         //リスト表示（クリアナンバーの+1）
         StageListNo = ClearNum+1;
         _MesseageObject = new GameObject[StageListNo];
+
+        //
         Debug.Log(StageListNo);
-        
-        //クリアナンバーの+1の数だけメッセージリストを表示する
         NewMessageListAdditional();
 
     }
@@ -133,18 +134,21 @@ public class MesseageList : MonoBehaviour
                              
         }
     }
-
-    //メッセージリストの既読チェックとListObjectクラスにステージ番号の登録を行う
+    public void NextScene() 
+    {
+        SceneManager.LoadScene("PazuruGameScene");    
+    }
     private void MesseageListSetting(GameObject obj, int objectnum) 
     {
-        var listobject = obj.GetComponent<ListObject>();
-        listobject.GetStageNum = objectnum;
+        var obj2 = obj.GetComponent<ListObject>();
+        obj2.GetStageNum = objectnum;
+      
     }
 
-    //リストをタップしたときに音を再生させる
     public void ListTap() 
     {
         Common_Sound_Manager.Instance.SE_Play(SE.Messeage);    
     }
+
 
 }

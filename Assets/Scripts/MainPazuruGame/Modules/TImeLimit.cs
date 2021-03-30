@@ -42,6 +42,7 @@ public class TImeLimit : MonoBehaviour
         Str = _Object.GetComponent<Text>();
         Str.text = span.ToString();
       
+
     }
 
     public void InitSetsize(float Reductionwidth, float Reductionheight)

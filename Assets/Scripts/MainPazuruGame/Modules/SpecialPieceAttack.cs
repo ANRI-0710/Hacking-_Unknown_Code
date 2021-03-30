@@ -14,10 +14,6 @@ public enum E_SpecialAttack
     SP_BlackPiece_Destroy    
 }
 
-
-/// <summary>
-/// 必殺技によって起こるピースの破壊・エフェクト・サウンドを管理するクラス
-/// </summary>
 public class SpecialPieceAttack : MonoBehaviour
 {  
     [SerializeField]

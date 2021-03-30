@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// 敵の攻撃（アンチウイルス）種類を管理するクラス
-/// </summary>
 public enum Enemy_Attack_Type
 {
     Attack_1_RamdomCriate,

@@ -1,16 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-/// <summary>
-///メッセージリストの既読チェックとどのステージのメッセージページ移動するかを記録するクラス
-/// </summary>
 public class ListObject : MonoBehaviour
-{    
-    //ステージ番号
+{
+
+    
+    
+    
+    
+
     private int StageNum;
     public int GetStageNum { get => StageNum;  set { StageNum = value; } }
     
-    //既読チェック
     private bool isRead = false;
     public bool GetisRead 
     {        
@@ -21,8 +23,15 @@ public class ListObject : MonoBehaviour
         isReadCheck();
       }         
     }
-   
-    //既読していない場合新着メッセージマークを表示させる
+
+    private void Start()
+    {
+
+       
+
+    }
+
+
     private void isReadCheck() 
     {
         if (isRead)
@@ -32,7 +41,6 @@ public class ListObject : MonoBehaviour
         }    
     }
 
-    //どのステージNoをタップしたかを感知し、記録し、該当番号のメッセージを再生する
     public void OnClickButton() 
     {                
         Debug.Log("StageNum" + StageNum + "が押された");
@@ -40,5 +48,21 @@ public class ListObject : MonoBehaviour
         PlayerPrefs.SetInt(SaveData_Manager.KEY_STAGE_NUM, StageNum);
         SceneManager.LoadScene("MessengerScene");
     }
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

@@ -2,10 +2,6 @@
 using UnityEngine.UI;
 using System.Collections;
 
-/// <summary>
-/// パズルピース（1個単位）
-/// </summary>
-
 //３つ以上揃う場合削除するブロックの位置を保存する
 public class Blocks
 {

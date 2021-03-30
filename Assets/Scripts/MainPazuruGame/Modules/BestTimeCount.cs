@@ -3,12 +3,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-/// <summary>
-/// ベストタイムを保存するクラス
-/// </summary>
-
 public class BestTimeCount : MonoBehaviour
-{  
+{
+   
     private Text _BestTimeCount;
     private bool TimeStop;
     public bool GetTimeStop { get => _BestTimeCount; set { TimeStop = value; } }

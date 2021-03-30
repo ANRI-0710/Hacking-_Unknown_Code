@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// テキストファイルから敵のステータスを格納するクラス
+/// 敵のステータスを格納するクラス
 /// </summary>
 
 public struct EnemyStatus 
@@ -40,10 +40,12 @@ public class Enemy_Status : MonoBehaviour
     //ステージナンバーの選択
     private int StageNum;
 
-    //テキストファイルから読み取ったデータを構造体に入れるための変数
+    //敵
+    private EnemyStatus[] Enemys = new EnemyStatus[3];
+
+    //テスト
     private EnemyStatus[] EnemyInput;
 
-    //テキストファイルからの呼び出し
     private void Start()
     {
         StageNum = PlayerPrefs.GetInt("STAGENUM", 0);            

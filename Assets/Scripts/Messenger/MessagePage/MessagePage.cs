@@ -3,13 +3,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// Line風メッセージを管理クラス
+/// メッセージクラス
 /// </summary>
-
-//テキストファイルから読み込み、変数に格納する構造体
 public struct MessageBoxListStruct
 {
-    private int TalkingPerson;
+    private int TalkingPerson;   
     private int MesseageIconImgNum;
     private int MesseageImgNum;
     public string _messegae;
@@ -22,13 +20,12 @@ public struct MessageBoxListStruct
 
 public class MessagePage : MonoBehaviour
 {
-    //メッセージプレハブと固定する座標位置
+    //メッセージプレハブ
     [SerializeField]
     private GameObject _MessengerPrefab;
     [SerializeField]
     private RectTransform Contentrecttransform;
 
-    //パズルステージへ遷移するためのボタンオブジェクト
     [SerializeField]
     private GameObject _button;
     private MessageBoxListStruct[] _MesseageList;
@@ -60,19 +57,17 @@ public class MessagePage : MonoBehaviour
     //既読フラグのチェック
     private int isReadCheckNum;
 
+
     private void Start()
     {
-        //ステージナンバーの読み込み
         stageNum = PlayerPrefs.GetInt(SaveData_Manager.KEY_STAGE_NUM, 0);
-
-        //既読チェック
         isReadCheckNum = PlayerPrefs.GetInt(SaveData_Manager.KEY_ISREAD_NUM, 0);
 
         //SaveManagerから所得
         var str = "Messeage" + stageNum;
         Debug.Log("Messeage" + stageNum);
 
-        //テキストファイルからの読込
+        //ファイル読み込み
         inputFile.Input_File(str);
         _MesseageList = new MessageBoxListStruct[inputFile.GetInputRows];
         arraycount = inputFile.GetInputRows;
@@ -97,7 +92,8 @@ public class MessagePage : MonoBehaviour
                         else if (inputFile.GetStrings[i, k] == "高田") { _MesseageList[i].GetMesseageIconImgNum = 4; }
                         else if (inputFile.GetStrings[i, k] == "警察") { _MesseageList[i].GetMesseageIconImgNum = 5; }
                         else if (inputFile.GetStrings[i, k] == "アンノウン") { _MesseageList[i].GetMesseageIconImgNum = 6; }
-         
+                      
+
                     }
                     if (k == 2)
                     {
@@ -191,25 +187,21 @@ public class MessagePage : MonoBehaviour
             var imageobj = obj.transform.GetChild(0).gameObject;
             imageobj.GetComponent<Image>().sprite = _iconImage[_MesseageList[i].GetMesseageIconImgNum];
 
-            //吹き出しメッセージの場所の設定（自分か・相手かで座標位置を変える）
             if (_MesseageList[listcount].GetTalkingPerson == 1)
             { imageobj.GetComponent<RectTransform>().localPosition = new Vector3(120, -60, 0); }
             else { imageobj.GetComponent<RectTransform>().localPosition = new Vector3(-130, -60, 0); }
 
         }
 
-        //パズルステージへの遷移
-        if (stageNum != 0 || stageNum != 1) _button.SetActive(true);
+        _button.SetActive(true);
 
     }
 
-    /// <summary>
-    /// パズルシーンへ移行する際の既読チェック
-    /// </summary>
     public void NextPazuruScene()
     {
         if (stageNum == 0 || stageNum == 1) 
         {
+
             if (isReadCheckNum != 0)
             {
                 SceneManager.LoadScene("ListMessengerScene");
@@ -219,7 +211,9 @@ public class MessagePage : MonoBehaviour
                 PlayerPrefs.SetInt(SaveData_Manager.KEY_ISREAD_NUM, 2);
                 PlayerPrefs.SetInt(SaveData_Manager.KEY_CLEAR_NUM, 2);
                 SceneManager.LoadScene("ListMessengerScene");
+
             }
+
         }
         else 
         {                         
@@ -227,12 +221,12 @@ public class MessagePage : MonoBehaviour
         }       
     }
 
-    /// <summary>
-    /// メッセージが表示される際の音
-    /// </summary>
     public void ListTap()
     {
         Common_Sound_Manager.Instance.SE_Play(SE.Messeage);
     }
+
+
+
 
 }
