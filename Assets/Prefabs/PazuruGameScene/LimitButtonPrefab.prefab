@@ -121,19 +121,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6862798558728731402}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2717655711914802223}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: set_GetisButtonPress
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2717655711914802223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,16 +136,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LimitButtonPrefab: {fileID: 5351922375997698986}
   Sprite:
+  - {fileID: 21300000, guid: 39f73e383ca7aa9488e7ad52edbf31fc, type: 3}
+  - {fileID: 21300000, guid: 943333c1375343b4bbb299ddb8cd46b9, type: 3}
+  - {fileID: 21300000, guid: f4d89780e1c1c9c47a8bc2b44ee87ba4, type: 3}
+  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
   - {fileID: 21300000, guid: 4c4aea483437abd428d2075ed3f50318, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
-  - {fileID: 21300000, guid: 05f6e3449b93d034a9aa4b29fa8cc357, type: 3}
+  - {fileID: 21300000, guid: 0bfd073d58c6e56469b2a495dca53606, type: 3}
+  - {fileID: 21300000, guid: 57ccce1e532218b4c8c9f4a055677b67, type: 3}
+  - {fileID: 21300000, guid: f7b11750c3b30ad47a6f62e20dbda8b0, type: 3}
+  - {fileID: 21300000, guid: 223c8549feb722540a224b93a7bdebd9, type: 3}
+  - {fileID: 21300000, guid: f6f6e86c18756ae4da82cd90396fa559, type: 3}
   _Button: {fileID: 5351922375997698986}
 --- !u!1 &5050546097339472993
 GameObject:

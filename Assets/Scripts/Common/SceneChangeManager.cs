@@ -25,10 +25,10 @@ public class SceneChangeManager : MonoBehaviour
     private float _green;
     private float _blue;
     private float _alfa;    
+    
     //フェードイン・アウトのフラグ管理
     private bool isFadeOut = false;
     public bool GetisFadeOut { get => isFadeOut; set { isFadeOut = value; } }
-
     private bool isFadeIn = false;
     public bool GetisFadeIn { get => isFadeIn; set { isFadeIn = value; } }
 
@@ -77,7 +77,6 @@ public class SceneChangeManager : MonoBehaviour
         }
     }
 
-
     public IEnumerator FadeOut()
     {
         _panel.enabled = true;
@@ -94,9 +93,7 @@ public class SceneChangeManager : MonoBehaviour
                 SceneChange();
                 break;
             }
-
         }
-
     }
 
     public IEnumerator Rerty()

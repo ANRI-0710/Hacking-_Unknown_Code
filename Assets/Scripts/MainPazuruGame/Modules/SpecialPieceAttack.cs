@@ -14,7 +14,6 @@ public enum E_SpecialAttack
     SP_BlackPiece_Destroy    
 }
 
-
 /// <summary>
 /// 必殺技によって起こるピースの破壊・エフェクト・サウンドを管理するクラス
 /// </summary>
@@ -221,8 +220,7 @@ public class SpecialPieceAttack : MonoBehaviour
         {
             for (var k = 0; k < Rows; k++)
             {
-                Pieces[3, k].GetPieceState = Piece_Type.EMPTY;
-                
+                Pieces[3, k].GetPieceState = Piece_Type.EMPTY;                
                 var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);                
                 _Particles.Burning_Piece(criatePos, _ParticleTransform);
 

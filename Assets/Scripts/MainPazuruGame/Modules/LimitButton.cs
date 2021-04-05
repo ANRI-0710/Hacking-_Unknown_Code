@@ -23,10 +23,9 @@ public class LimitButton : MonoBehaviour
     [SerializeField]
     private Sprite[] Sprite;
 
-
     //
     [SerializeField]
-    private Button _Button;
+    public Button _Button;
     private Image _AttackImage;
 
     private bool isButtonPress;
@@ -44,27 +43,21 @@ public class LimitButton : MonoBehaviour
     }
 
      void Awake()
-   　{
-        
+   　{       
         //var obj = transform.GetChild(0).gameObject;
         //_AttackImage = obj.GetComponent<Image>();
         //_Button = this.GetComponent<Button>();
         //_Button.onClick.AddListener(ButtonPressed);
-    }
-
+     }
 
     private void Start()
     {
-
         SpecialAttack1 = PlayerPrefs.GetInt("ATTACK1", 0);
         SpecialAttack2 = PlayerPrefs.GetInt("ATTACK2", 0);
-
     }
-
 
     public void InitLimitButton(RectTransform limitTransform) 
     {
-
         var obj = Instantiate(_LimitButtonPrefab);
         obj.name = "test";
         obj.transform.SetParent(limitTransform);
@@ -77,12 +70,12 @@ public class LimitButton : MonoBehaviour
 
         _ButtonControll[0] = obj.GetComponent<Button>();
         _ButtonControll[0].interactable = false;
-        _LimitButtonControll[0] = obj.GetComponent<LimitButton>();
 
+        _LimitButtonControll[0] = obj.GetComponent<LimitButton>();
         _AttackImage.sprite = _LimitButtonControll[0].Sprite[1];
 
-        //_LimitButtonControll[0].SpecialAttackType = (E_SpecialAttack)SpecialAttack1;
-        // Debug.Log("LimitButtonC" + _LimitButtonControll[0].SpecialAttackType);
+        _LimitButtonControll[0].SpecialAttackType = (E_SpecialAttack)SpecialAttack1;
+        Debug.Log("LimitButtonC" + _LimitButtonControll[0].SpecialAttackType);
 
         //_LimitButtonControll[0].GetComponent<LimitButton>().SpecialAttackType = (E_SpecialAttack)SpecialAttack1;
         //SetSpecialAttackImage(_LimitButtonControll[0].GetComponent<LimitButton>().SpecialAttackType);
@@ -125,15 +118,22 @@ public class LimitButton : MonoBehaviour
 
     public void LimitAttack()
     {
-        _LimitButtonControll[0].GetisButtonPress = true;
-        _LimitButtonControll[1].GetisButtonPress = true;
+        _LimitButtonControll[0].isButtonPress = true;
+        //_LimitButtonControll[1].isButtonPress = true;
     }
 
     public void LimitInteractable() 
     {
         _ButtonControll[0].interactable = true;
-        _ButtonControll[1].interactable = true;
+       // _ButtonControll[1].interactable = true;
     }
+
+    public void LimitUnInteractable()
+    {
+        _ButtonControll[0].interactable = false;
+        // _ButtonControll[1].interactable = true;
+    }
+
 
     private void SetSpecialAttackImage(E_SpecialAttack SpecialAttackType) 
     {
@@ -182,10 +182,8 @@ public class LimitButton : MonoBehaviour
 
     public void ButtonPressed() 
     {
-        GetisButtonPress = true;
-        Debug.Log("GetisButtonPress" + GetisButtonPress);
-
-    } 
-
+        //isButtonPress = true;
+        Debug.Log("isButtonPress");
+    }
 
 }

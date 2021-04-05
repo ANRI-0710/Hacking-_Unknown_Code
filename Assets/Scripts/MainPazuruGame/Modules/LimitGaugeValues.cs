@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 必殺技（リミット）ゲージを管理するクラス
 /// </summary>
-
 public class LimitGaugeValues : MonoBehaviour
 {
     //Limitゲージ
@@ -15,7 +12,6 @@ public class LimitGaugeValues : MonoBehaviour
     private RectTransform _LimitTransform;
     [SerializeField]
     private GameObject _LimitButton;
-
     private GameObject LimitGaugeControll;
 
     //リミットゲージの表示
@@ -40,7 +36,6 @@ public class LimitGaugeValues : MonoBehaviour
         _HPLimitGauge.InitSetsize(0.4f, 0.1f);
         _HPLimitGauge.InitSetHp(100, 0);
     }
-
 
     //public void LimitPlus()
     //{

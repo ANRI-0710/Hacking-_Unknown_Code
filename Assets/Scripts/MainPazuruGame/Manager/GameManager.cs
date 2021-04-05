@@ -49,26 +49,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject _WarningPopup;
 
-    //Limitゲージ
-    [SerializeField]
-    private GameObject _LimitGauge;
+    //リミットボタン
     [SerializeField]
     private RectTransform _LimitTransform; 
     [SerializeField]
-    private GameObject _LimitButton;
-    
-    private GameObject LimitGaugeControll; 
-    private HP _HPLimitGauge;
-
-    [SerializeField]
     private LimitManager _LimitManager;
-
-    
-   //リミットボタン
-    [SerializeField]
-    private Button _LimitButtonPrefab;
-    private Button[] _ButtonControll = new Button[2];
-    private LimitButton[] _LimitButtonControll = new LimitButton[2];
 
     //UI
     [SerializeField]
@@ -134,7 +119,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Enemy_Status _EnemyStatus;
     private EnemyStatus[] Enemys = new EnemyStatus[3];
-    private int AttackEnemyType = 2;
     
     //ステージナンバー
     private int StageNum;
@@ -142,23 +126,21 @@ public class GameManager : MonoBehaviour
     private int ClearNum;
     private bool Combo5 = false;
 
-    //スペシャルアタックの攻撃
-    private int SpecialAttack1;
-    private int SpecialAttack2;
-
     //タイムカウント
     [SerializeField]
     BestTimeCount bestTimeCount;    
     [SerializeField]
     SceneChangeManager _sceneChange;
 
-    private bool Func = true;
-
     [SerializeField]
     private UIManager _UiManager;
 
     //リミットゲージの値
     private int LimitMax = 50;
+
+    //スペシャルアタックの攻撃
+    private int SpecialAttack1;
+    private int SpecialAttack2;
 
 
     private void Awake()
@@ -169,16 +151,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Common_Sound_Manager.Instance.Sound_Play(BGM.Stop);
-
-        SpecialAttack1 = PlayerPrefs.GetInt("ATTACK1", 0);
-        SpecialAttack2 = PlayerPrefs.GetInt("ATTACK2", 0);
-
         ClearNum = PlayerPrefs.GetInt("STAGECLEARNUM", 0);
         StageNum = PlayerPrefs.GetInt("STAGENUM", 0);
         Debug.Log("StageNum"+StageNum);
         Debug.Log("ClearNum" + ClearNum);
 
-       InitScreenSize();
+        SpecialAttack1 = PlayerPrefs.GetInt("ATTACK1", 0);
+        SpecialAttack2 = PlayerPrefs.GetInt("ATTACK2", 0);
+
+        InitScreenSize();
        InitBoard();
         //InitLimitGauge();
         _LimitManager.InitLimitObject(_LimitTransform);
@@ -243,7 +224,6 @@ public class GameManager : MonoBehaviour
 
         while (true)
         {
-            //リミットボタンの発動チェック
             //for (var p = 0; p < 2; p++) 
             //{
             //    if (_LimitButtonControll[p].GetisButtonPress)
@@ -259,6 +239,18 @@ public class GameManager : MonoBehaviour
             //        yield return ObstaclePieceCheck();
             //    }
             //}
+            // _LimitManager.GetisButtonPress
+
+            //リミットボタンの発動チェック
+            if (_LimitManager.GetisButtonPress)
+            {
+                _specialPieceAttack.SpecialAttack((E_SpecialAttack)SpecialAttack1, _Pieces);
+                isDestroy = true;
+                _LimitManager.GetisButtonPress = false;
+                yield return null;
+                _LimitManager.LimitInitValues();
+                yield return ObstaclePieceCheck();
+            }
 
             //ピースのタップ検知
             if (Input.GetMouseButtonDown(0))//押した瞬間のピースの情報を所得
@@ -307,6 +299,12 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Q)) _specialPieceAttack.SpecialAttack(E_SpecialAttack.SP_BlackPiece_Destroy, _Pieces);
             if (Input.GetKeyDown(KeyCode.Z)) EnemyConroll.Get_NowHpPoint = 0;
             if (Input.GetKeyDown(KeyCode.U)) EnemyConroll.GetEnemyTimeLimit = 0 ;
+
+            if (Input.GetKeyDown(KeyCode.T)) 
+            {
+              _LimitManager.GetisButtonPress = true;
+            }
+
 
 
 
@@ -474,7 +472,6 @@ public class GameManager : MonoBehaviour
                 _Pieces[(int)_mouseDown.GetPieceX, (int)_mouseDown.GetPieceY].GetPieceState = inputMemoryPiece.GetPieceState;
                
             }
-            Func = true;
             yield return TapMousePiece();
         }
     }
@@ -592,7 +589,9 @@ public class GameManager : MonoBehaviour
                    PuzzleSoundManager.Instance.SE_Selection(SE_Now.EnemyAppearance);                 
                     yield return new WaitForSeconds(2.0f);
                     Destroy(obj);
-                    _HPLimitGauge.GetHp++;
+                    //_HPLimitGauge.GetHp++;
+                    
+
                 }
                 if (EnemyCount == 2) 
                 {                    
@@ -600,7 +599,8 @@ public class GameManager : MonoBehaviour
                     PuzzleSoundManager.Instance.SE_Selection(SE_Now.EnemyAppearance);
                     yield return new WaitForSeconds(2.0f);
                     Destroy(obj);
-                    _HPLimitGauge.GetHp++;
+                    //_HPLimitGauge.GetHp++;
+                    
                 }
                 yield return new WaitForSeconds(1.0f);              
                 Enemys[EnemyCount] = _EnemyStatus.SetEnemyStatus(StageNum, EnemyCount);   
@@ -682,10 +682,8 @@ public class GameManager : MonoBehaviour
         _UiManager.GameOver();
         while (true)
         {
-
             yield return null;
         }
-
 
     }
 
@@ -708,8 +706,9 @@ public class GameManager : MonoBehaviour
                 {
                     _Pieces[i.Getx(), i.Gety()].GetPieceState = Piece_Type.FEVER_5;
                     DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
-                  
+
                     //LimitPlus();
+                    _LimitManager.LimitPlus();
                     _Particles.PlayerAttackToEnemy(_ParticleTransform);
                     PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
                 }
@@ -719,7 +718,8 @@ public class GameManager : MonoBehaviour
                     _Particles.PlayerAttackToEnemy(_ParticleTransform);
                     DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
                 }
-                //LimitPlus();                
+                //LimitPlus();
+                _LimitManager.LimitPlus();
             }
            
         }
@@ -742,6 +742,7 @@ public class GameManager : MonoBehaviour
                     DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
                 }
                 //LimitPlus();
+                _LimitManager.LimitPlus();
                 Combo5 = false;
             }
         }
@@ -759,6 +760,7 @@ public class GameManager : MonoBehaviour
                 _Pieces[i.Getx(), i.Gety()].GetPieceState = Piece_Type.EMPTY;
                 _Particles.PlayerAttackToEnemy(_ParticleTransform);
                 DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
+                _LimitManager.LimitPlus();
                 //LimitPlus();                
             }
         }

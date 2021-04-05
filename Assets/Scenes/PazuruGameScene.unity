@@ -1460,7 +1460,7 @@ GameObject:
   - component: {fileID: 583072182}
   - component: {fileID: 583072181}
   m_Layer: 0
-  m_Name: GridManager
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1475,32 +1475,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 583072180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15412e57af1e54d46b18186cff3f3c3e, type: 3}
+  m_Script: {fileID: 11500000, guid: 20051862d752fc2478e2e6b3080e9df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _Canvas: {fileID: 2010823093}
-  warningPopup: {fileID: 6047452209931516374, guid: d175a1afd21583d419771bc216b57ab5,
-    type: 3}
+  warningPopup: {fileID: 1105920358}
   _PieceTrans: {fileID: 1536112125}
   _PazuruPrefab: {fileID: 9075567602369376365, guid: 3ad739b4fa5ae6348adce6e5320dc321,
     type: 3}
   _InputClass: {fileID: 3435873641795758204}
   _ParticleTransform: {fileID: 1887809434}
-  _Particles: {fileID: 8387714042612809633, guid: c5913fe922e67f6438f29327e97932ad,
-    type: 3}
+  _Particles: {fileID: 1574330154}
   _EnemyFactroy: {fileID: 4252364673401905540, guid: 8eea219051d665549a2c324c861710ae,
     type: 3}
   _EnemyTransform: {fileID: 954816872}
   _enemyAttack: {fileID: 2078282913}
   _specialPieceAttack: {fileID: 846154621}
   _WarningPopup: {fileID: 1105920356}
-  _LimitGauge: {fileID: 7864644005414841577, guid: 934f92447e5c24444b0da3a93b7821cd,
-    type: 3}
   _LimitTransform: {fileID: 177915293}
-  _LimitButton: {fileID: 0}
   _LimitManager: {fileID: 2102264368}
-  _LimitButtonPrefab: {fileID: 5351922375997698986, guid: 51a694ffc4b645c4398ae5412172d758,
-    type: 3}
   UIrectTransform: {fileID: 244383530}
   _ComboTextDisplay: {fileID: 6381950066621625060, guid: bab5a66579561004fb25bd2c239eddcb,
     type: 3}
@@ -1767,7 +1760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &650701023
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2900,16 +2893,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Particle: {fileID: 6617610484184635817, guid: 91524d1e0bf4ceb4da098d8933b3fb6a,
     type: 3}
-  _GreenParticle: {fileID: 0}
-  _EnemyAttackPartcle: {fileID: 0}
-  _EnemyDestroy: {fileID: 0}
-  _EnemyPop: {fileID: 0}
-  _SpecialComboCross_Yoko: {fileID: 0}
-  _SpecialComboCross_Tate: {fileID: 0}
-  _PlayerAttackEffect: {fileID: 0}
+  _GreenParticle: {fileID: 19800000, guid: 7a2b3c6dde1175a439506d7d2e259bbf, type: 3}
+  _EnemyAttackPartcle: {fileID: 1377717004662795413, guid: ea0427d046e120a4cbf4b4f63adebe90,
+    type: 3}
+  _EnemyDestroy: {fileID: 2427730612081525324, guid: f677cfdf20bb70a468c737e19c991622,
+    type: 3}
+  _EnemyPop: {fileID: 19800000, guid: a27a781607ee88444b948f4a54b69343, type: 3}
+  _SpecialComboCross_Yoko: {fileID: 5555800418255992990, guid: 7b88ec4fdef6b184b8fd1c0a64082385,
+    type: 3}
+  _SpecialComboCross_Tate: {fileID: 5555800418255992990, guid: 7b88ec4fdef6b184b8fd1c0a64082385,
+    type: 3}
+  _PlayerAttackEffect: {fileID: 853764282409179030, guid: 0fbd0b805f621ad458aea747c1a51e0c,
+    type: 3}
   vectorReturn: {fileID: 9068241105124603000, guid: 43977f53021c84d45b0a2e9544c06236,
     type: 3}
-  _Bunung: {fileID: 0}
+  _Bunung: {fileID: 6992323962132758222, guid: 16c55f5bb2791e54c96fd508fe7c674c, type: 3}
   _ParticleTransform: {fileID: 1887809434}
 --- !u!1 &1637523556
 GameObject:
@@ -8786,6 +8784,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de095ded88a0484cb5d3cadf049f842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _durationDoTweenTime: 0.2
+  _openValue: 1
+  _cloaseValue: 0
   _Crear_Popup: {fileID: 0}
   _GameOver_Popup: {fileID: 0}
 --- !u!1001 &1242250577162355090
