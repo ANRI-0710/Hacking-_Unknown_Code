@@ -51,12 +51,14 @@ MonoBehaviour:
   _Particle: {fileID: 6617610484184635817, guid: 91524d1e0bf4ceb4da098d8933b3fb6a,
     type: 3}
   _GreenParticle: {fileID: 19800000, guid: 7a2b3c6dde1175a439506d7d2e259bbf, type: 3}
-  _EnemyAttackPartcle: {fileID: 8206540175009245365, guid: d1826803481f5254f9d081f05e265240,
+  _EnemyAttackPartcle: {fileID: 19800000, guid: a27a781607ee88444b948f4a54b69343,
     type: 3}
   _EnemyDestroy: {fileID: 2427730612081525324, guid: f677cfdf20bb70a468c737e19c991622,
     type: 3}
   _EnemyPop: {fileID: 19800000, guid: a27a781607ee88444b948f4a54b69343, type: 3}
-  _SpecialComboCross_Yoko: {fileID: 1377717004662795413, guid: ea0427d046e120a4cbf4b4f63adebe90,
+  _EnemyBackParticle: {fileID: 1377717004662795413, guid: ea0427d046e120a4cbf4b4f63adebe90,
+    type: 3}
+  _SpecialComboCross_Yoko: {fileID: 5555800418255992990, guid: 7b88ec4fdef6b184b8fd1c0a64082385,
     type: 3}
   _SpecialComboCross_Tate: {fileID: 5555800418255992990, guid: 7b88ec4fdef6b184b8fd1c0a64082385,
     type: 3}

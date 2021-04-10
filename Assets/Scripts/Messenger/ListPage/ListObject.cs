@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class ListObject : MonoBehaviour
 {    
     //ステージ番号
-    private int StageNum;
-    public int GetStageNum { get => StageNum;  set { StageNum = value; } }
+    private int stageNum;
+    public int GetStageNum { get => stageNum;  set { stageNum = value; } }
     
     //既読チェック
     private bool isRead = false;
@@ -18,12 +18,14 @@ public class ListObject : MonoBehaviour
       set
       {             
         isRead = value;
-        isReadCheck();
+        IsReadCheck();
       }         
     }
-   
-    //既読していない場合新着メッセージマークを表示させる
-    private void isReadCheck() 
+
+    /// <summary>
+    /// 既読していない場合新着メッセージマークを表示させる
+    /// </summary>
+    private void IsReadCheck() 
     {
         if (isRead)
         {
@@ -32,12 +34,14 @@ public class ListObject : MonoBehaviour
         }    
     }
 
-    //どのステージNoをタップしたかを感知し、記録し、該当番号のメッセージを再生する
+    /// <summary>
+    ///どのステージNoをタップしたかを感知し、記録し、該当番号のメッセージを再生する
+    /// </summary>
     public void OnClickButton() 
     {                
-        Debug.Log("StageNum" + StageNum + "が押された");
+        Debug.Log("StageNum" + stageNum + "が押された");
         //2をセット
-        PlayerPrefs.SetInt(SaveData_Manager.KEY_STAGE_NUM, StageNum);
+        PlayerPrefs.SetInt(SaveData_Manager.KEY_STAGE_NUM, stageNum);
         SceneManager.LoadScene("MessengerScene");
     }
 

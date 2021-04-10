@@ -81,29 +81,29 @@ public class MessagePage : MonoBehaviour
         {
             for (var k = 0; k < inputFile.GetInputCols; k++)
             {
-                if (i != 0)
+                if (i != (int)Column.Col_0)
                 {
-                    if (k == 0)
+                    if (k == (int)Row.Row_0)
                     {
-                        if (inputFile.GetStrings[i, k] == "相手") { _MesseageList[i].GetTalkingPerson = 0; }
-                        else if (inputFile.GetStrings[i, k] == "自分") { _MesseageList[i].GetTalkingPerson = 1; }
+                        if (inputFile.GetStrings[i, k] == "相手") { _MesseageList[i].GetTalkingPerson = (int)iconSprite.Zibun; }
+                        else if (inputFile.GetStrings[i, k] == "自分") { _MesseageList[i].GetTalkingPerson = (int)iconSprite.Masato; }
                     }
-                    if (k == 1)
+                    if (k == (int)Row.Row_1)
                     {
-                        if (inputFile.GetStrings[i, k] == "自分") { _MesseageList[i].GetMesseageIconImgNum = 0; }
-                        else if (inputFile.GetStrings[i, k] == "マサシ") { _MesseageList[i].GetMesseageIconImgNum = 1; }
-                        else if (inputFile.GetStrings[i, k] == "レナ") { _MesseageList[i].GetMesseageIconImgNum = 2; }
-                        else if (inputFile.GetStrings[i, k] == "かな") { _MesseageList[i].GetMesseageIconImgNum = 3; }
-                        else if (inputFile.GetStrings[i, k] == "高田") { _MesseageList[i].GetMesseageIconImgNum = 4; }
-                        else if (inputFile.GetStrings[i, k] == "警察") { _MesseageList[i].GetMesseageIconImgNum = 5; }
-                        else if (inputFile.GetStrings[i, k] == "アンノウン") { _MesseageList[i].GetMesseageIconImgNum = 6; }
+                        if (inputFile.GetStrings[i, k] == "自分") { _MesseageList[i].GetMesseageIconImgNum = (int)iconSprite.Zibun; }
+                        else if (inputFile.GetStrings[i, k] == "マサシ") { _MesseageList[i].GetMesseageIconImgNum = (int)iconSprite.Masato; }
+                        else if (inputFile.GetStrings[i, k] == "レナ") { _MesseageList[i].GetMesseageIconImgNum = (int)iconSprite.Rena; }
+                        else if (inputFile.GetStrings[i, k] == "かな") { _MesseageList[i].GetMesseageIconImgNum = (int)iconSprite.Kana; }
+                        else if (inputFile.GetStrings[i, k] == "高田") { _MesseageList[i].GetMesseageIconImgNum = (int)iconSprite.Takada; }
+                        else if (inputFile.GetStrings[i, k] == "警察") { _MesseageList[i].GetMesseageIconImgNum = (int)iconSprite.Keisatu; }
+                        else if (inputFile.GetStrings[i, k] == "アンノウン") { _MesseageList[i].GetMesseageIconImgNum = (int)iconSprite.UnKnown; }
          
                     }
-                    if (k == 2)
+                    if (k == (int)Row.Row_2)
                     {
                         _MesseageList[i].GetMesseageImgNum = int.Parse(inputFile.GetStrings[i, k]);
                     }
-                    if (k == 3)
+                    if (k == (int)Row.Row_3)
                     {
                         _MesseageList[i].Getmesseage = inputFile.GetStrings[i, k];
                     }
@@ -112,18 +112,23 @@ public class MessagePage : MonoBehaviour
         }
 
         //既読チェック
-        //if(isReadCheckNum <= stageNum) ReadMessegeFin();
+        //if(isReadCheckNum < stageNum) ReadMessegeFin();
         Debug.Log("isReadCheckNum"+isReadCheckNum);
 
+        if (stageNum != 0 && stageNum != 1)
+        {
+            _button.SetActive(true);
+        }
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            
             ListTap();
             NewMessenge();
-            //ReadMessegeFin();
+
         }
     }
 
@@ -156,15 +161,17 @@ public class MessagePage : MonoBehaviour
         }
         else
         {
-            if (stageNum != 0 && stageNum != 1)
+            if (stageNum != 0 || stageNum != 1)
             {
                 _button.SetActive(true);
             }
 
             if (stageNum == 0 || stageNum == 1)
             {
+                _button.SetActive(false);
                 PlayerPrefs.SetInt(SaveData_Manager.KEY_ISREAD_NUM, 2);
                 PlayerPrefs.SetInt(SaveData_Manager.KEY_CLEAR_NUM, 2);
+
             }     
 
         }
@@ -182,7 +189,6 @@ public class MessagePage : MonoBehaviour
 
             //吹き出しの番号
             obj.GetComponent<Image>().sprite = _hukidasiImage[_MesseageList[i].GetTalkingPerson];
-
             //テキスト
             var textobj = obj.transform.GetChild(1).gameObject;
             textobj.GetComponent<Text>().text = _MesseageList[i]._messegae;
@@ -196,15 +202,15 @@ public class MessagePage : MonoBehaviour
             { imageobj.GetComponent<RectTransform>().localPosition = new Vector3(120, -60, 0); }
             else { imageobj.GetComponent<RectTransform>().localPosition = new Vector3(-130, -60, 0); }
 
-        }
 
+        }
         //パズルステージへの遷移
         if (stageNum != 0 || stageNum != 1) _button.SetActive(true);
 
     }
 
     /// <summary>
-    /// パズルシーンへ移行する際の既読チェック
+    /// パズルシーンへ移行する際の既読チェック(ステージ0と1はパズルパートはないのでパズルステージに飛ばさない)
     /// </summary>
     public void NextPazuruScene()
     {

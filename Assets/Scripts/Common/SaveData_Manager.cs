@@ -1,9 +1,16 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// セーブデータ管理クラス
-/// </summary>
 
+public enum ISREAD  //既読用変数
+{
+    UNREAD,
+    READ,
+}
+
+/// <summary>
+/// セーブデータ管理クラス（次回のアップデートでplayerprefからjsonに変更予定）
+/// </summary>
+/// 
 public class SaveData_Manager : Singleton<SaveData_Manager>
 {  
     //ステージ記録フラグ
@@ -11,7 +18,9 @@ public class SaveData_Manager : Singleton<SaveData_Manager>
     public const string KEY_LIST_NUM = "LISTNUM";
    
     //既読フラグ
-    public const string KEY_ISREAD_NUM = "KEY_ISREAD_NUM"; 
+    public const string KEY_ISREAD_NUM = "KEY_ISREAD_NUM";
+    public const string KEY_ISREAD_PAZURU_TUTORIAL = "KEY_ISREAD_PAZURU_TUTORUAL";
+    public const string KEY_ISREAD_MYPAGE_TUTORIAL = "KEY_ISREAD_MYPAGE_TUTORUAL";
 
     //クリアフラグ
     public const string KEY_CLEAR_NUM = "STAGECLEARNUM";
@@ -44,7 +53,5 @@ public class SaveData_Manager : Singleton<SaveData_Manager>
         }
         DontDestroyOnLoad(this.gameObject);
     }
-
-    
 
 }

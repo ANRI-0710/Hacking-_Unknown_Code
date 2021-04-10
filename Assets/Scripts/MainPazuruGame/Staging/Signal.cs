@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -9,14 +7,16 @@ using UnityEngine.UI;
 
 public class Signal : MonoBehaviour
 {
-
     //スタート・クリア・第一層~3層までの合図アニメーション
     [SerializeField]
     private GameObject _SignalObject;
 
-    //[SerializeField]
-    //private Text _Text;
-
+    /// <summary>
+    /// 合図アニメーションの文言を変更してリターンする
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="transforms"></param>
+    /// <returns></returns>
     public GameObject SignalObject(string str, RectTransform transforms) {
 
         var obj =  Instantiate(_SignalObject);
@@ -28,8 +28,6 @@ public class Signal : MonoBehaviour
         return obj;
 
     }
-
-
 
 
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum E_SpecialAttack 
+public enum E_SpecialAttack //リミット技パターン
 {
     SP_Red,
     SP_Blue,
@@ -15,14 +15,15 @@ public enum E_SpecialAttack
 }
 
 /// <summary>
-/// 必殺技によって起こるピースの破壊・エフェクト・サウンドを管理するクラス
+/// リミット技によって起こるピースの破壊・エフェクト・サウンドを管理するクラス
 /// </summary>
 public class SpecialPieceAttack : MonoBehaviour
 {  
-    [SerializeField]
-    private RectTransform _ParticleTransform;    
+   
     [SerializeField]
     private Particle _Particles;
+    [SerializeField]
+    private RectTransform _ParticleTransform;
 
     [SerializeField]
     private VectorReturn vectorReturn;
@@ -30,14 +31,19 @@ public class SpecialPieceAttack : MonoBehaviour
     private int Width;
     private const int Cols = 7;
     private const int Rows = 7;
-
     private const int Piece_Attack_Count = 10;
 
     void Start()
     {
+        //スクリーンサイズの所得
         Width = (Screen.width / Cols);
     }
 
+    /// <summary>
+    /// 登録したリミット技を発動させる
+    /// </summary>
+    /// <param name="specialAttack">リミット技の攻撃タイプ</param>
+    /// <param name="Pieces">ピースの盤面</param>
     public void SpecialAttack(E_SpecialAttack specialAttack, Piece[,] Pieces) 
     {
         switch (specialAttack) 
@@ -55,7 +61,7 @@ public class SpecialPieceAttack : MonoBehaviour
                 Special_Attack_SP_Green(Pieces);
                 break;
             case E_SpecialAttack.SP_White:
-                Special_Attack_SP_White(Pieces);
+                Special_Attack_SP_Pink(Pieces);
                 break;
             case E_SpecialAttack.SP_HorizontalOneArray:
                 Special_Attack_SP_HorizontalOneArray(Pieces);
@@ -75,6 +81,10 @@ public class SpecialPieceAttack : MonoBehaviour
         }       
     }
 
+    /// <summary>
+    /// 赤属性のピースを10個増やす
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_Red(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
@@ -89,6 +99,10 @@ public class SpecialPieceAttack : MonoBehaviour
             }        
     }
 
+    /// <summary>
+    /// 青属性のピースを10個増やす
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_Blue(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
@@ -103,6 +117,10 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 黄属性のピースを10個増やす
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_Yellow(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
@@ -118,6 +136,10 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 緑属性のピースを10個増やす
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_Green(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
@@ -132,7 +154,11 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
-    public void Special_Attack_SP_White(Piece[,] Pieces)
+    /// <summary>
+    /// ハート型ウイルス属性のピースを10個増やす
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
+    public void Special_Attack_SP_Pink(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
         for (var i = 0; i < Piece_Attack_Count; i++)
@@ -146,6 +172,10 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// アンチウイルスピースをすべて抹消する
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_Black_Destroy(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
@@ -165,6 +195,10 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 4行目のすべてのピースを破壊する
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_HorizontalOneArray(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);
@@ -179,6 +213,11 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// 4列目のすべてのピースを破壊する
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_VerticalOneArray(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);
@@ -193,6 +232,10 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ×方向すべてのピースを破壊する
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_ObliqueCross_Cross(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);
@@ -213,6 +256,10 @@ public class SpecialPieceAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ＋方向すべてのピースを破壊する
+    /// </summary>
+    /// <param name="Pieces">ピースの盤面</param>
     public void Special_Attack_SP_Destroy_Cross(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);

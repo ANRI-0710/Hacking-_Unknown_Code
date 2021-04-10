@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// 敵の攻撃（アンチウイルス）種類を管理するクラス
-/// </summary>
-public enum Enemy_Attack_Type
+public enum Enemy_Attack_Type   //敵の攻撃パターン変数
 {
     Attack_1_RamdomCriate,
     Attack_2_RamdomCriate,
@@ -14,27 +11,36 @@ public enum Enemy_Attack_Type
     Attack_ObliqueCross,
 }
 
+/// <summary>
+/// 敵の攻撃パターンを管理するクラス（アンチウイルスパズル（お邪魔ピース）を輩出パターン）
+/// </summary>
 public class EnemyAttack : MonoBehaviour
 {
+    //アンチウイルスパズル用のパーティクル演出
     [SerializeField]
     private RectTransform _ParticleTransform;
     [SerializeField]
     private Particle _Particles;
-
+    
+    //座標変換用
     [SerializeField]
-    private VectorReturn vectorReturn;
+    private VectorReturn _VectorReturn;
 
+    //スクリーンサイズを所得しパーティクルの生成画面サイズに併せて調整するため
     private int Width;
+
+    //パズルの行・列の定数
     private const int Cols = 7;
     private const int Rows = 7;
 
     void Start()
     {
+        //スクリーンサイズを所得しパーティクルの生成画面サイズに併せて調整
         Width = (Screen.width / Cols);
     }
 
     /// <summary>
-    /// Enemyの敵をだす
+    /// テキストファイルから受け取った敵の攻撃パターン番号の攻撃を行う
     /// </summary>
     /// <param name="enemyAttacknum"></param>
     /// <param name="Pieces"></param>
@@ -67,16 +73,24 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
+   /// <summary>
+   /// アンチウイルスパズルを1個ランダムで生成する
+   /// </summary>
+   /// <param name="Pieces">現在のパズルの盤面</param>
     public void Attack_1_RamdomCriate(Piece[,] Pieces)
     {        
         var x = Random.Range(0, Cols);
         var y = Random.Range(0, Rows);
 
-        var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
+        var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
         _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
         Pieces[x, y].GetPieceState = Piece_Type.BLACK;
     }
 
+    /// <summary>
+    /// アンチウイルスを2個ランダムで生成する
+    /// </summary>
+    /// <param name="Pieces">現在のパズルの盤面</param>
     public void Attack_2_RamdomCriate(Piece[,] Pieces)
     {        
         for (var i = 0; i < 2; i++)
@@ -84,51 +98,72 @@ public class EnemyAttack : MonoBehaviour
             var x = Random.Range(0, Cols);
             var y = Random.Range(0, Rows);
             
-            var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
+            var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
             _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
             Pieces[x, y].GetPieceState = Piece_Type.BLACK;          
         }
     }
 
+    /// <summary>
+    /// アンチウイルスパズルをを4個ランダムで生成する
+    /// </summary>
+    /// <param name="Pieces">現在のパズルの盤面</param>
     public void Attack_4_RamdomCriate(Piece[,] Pieces)
     {       
         for (var i = 0; i < 4; i++)
         {
             var x = Random.Range(0, Cols);
             var y = Random.Range(0, Rows);
-            var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
+            var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
 
             _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
             Pieces[x, y].GetPieceState = Piece_Type.BLACK;            
         }
     }
-    
+
+    /// <summary>
+    /// アンチウイルスパズルを縦4列目すべてに生成する
+    /// </summary>
+    /// <param name="Pieces">現在のパズルの盤面</param>
     public void Attack_Center_Rows(Piece[,] Pieces)
     {
         for (var i = 0; i < Rows; i++)
         {
             for (var k = 0; k < Cols; k++)
-            {
-                var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(k, 3), Width);
+            {              
+                var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(k, 3), Width);
                 _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
-                Pieces[k, 3].GetPieceState = Piece_Type.BLACK;
+                Pieces[k, 3].GetPieceState = Piece_Type.BLACK;             
             }
         }
     }
 
+    /// <summary>
+    /// アンチウイルスパズルを横4列目すべてに生成する
+    /// </summary>
+    /// <param name="Pieces">現在のパズルの盤面</param>
     public void Attack_Center_Cols(Piece[,] Pieces)
     {
         for (var i = 0; i < Rows; i++)
         {
             for (var k = 0; k < Cols; k++)
             {
-                var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);
-                _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
-                Pieces[3, k].GetPieceState = Piece_Type.BLACK;
+
+                if (k != 0) 
+                {
+                    var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);
+                    _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
+                    Pieces[3, k].GetPieceState = Piece_Type.BLACK;
+                }
+                  
             }
         }
     }
 
+    /// <summary>
+    /// アンチウイルスパズルを十字方向すべてに生成する
+    /// </summary>
+    /// <param name="Pieces">現在のパズルの盤面</param>
     public void Attack_Cross_Piece(Piece[,] Pieces)
     {
         for (var i = 0; i < Cols; i++)
@@ -137,10 +172,10 @@ public class EnemyAttack : MonoBehaviour
             {
                 Pieces[3, k].GetPieceState = Piece_Type.EMPTY;
 
-                var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);
+                var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);
                 _Particles.PlayerDestroyParticles(criatePos, _ParticleTransform);
 
-                var criatePos1 = vectorReturn.GetPieceWorldPos(new Vector2(k, 3), Width);
+                var criatePos1 = _VectorReturn.GetPieceWorldPos(new Vector2(k, 3), Width);
                 Pieces[k, 3].GetPieceState = Piece_Type.EMPTY;
 
                 _Particles.PlayerDestroyParticles(criatePos, _ParticleTransform);
@@ -149,6 +184,10 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// アンチウイルスパズルを×字方向すべてに生成する
+    /// </summary>
+    /// <param name="Pieces">現在のパズルの盤面</param>
     public void Attack_ObliqueCross(Piece[,] Pieces) 
     {
         for (var i = 0; i < Rows; i++)
@@ -156,8 +195,8 @@ public class EnemyAttack : MonoBehaviour
             for (var k = 0; k < Cols; k++)
             {
                 var col = Cols - 1;
-                var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(k, k), Width);
-                var criatePos2 = vectorReturn.GetPieceWorldPos(new Vector2(col - i, k), Width);
+                var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(k, k), Width);
+                var criatePos2 = _VectorReturn.GetPieceWorldPos(new Vector2(col - i, k), Width);
 
                 _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
                 _Particles.EnemyAttackParticles(criatePos2, _ParticleTransform);

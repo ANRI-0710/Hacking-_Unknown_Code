@@ -501,6 +501,7 @@ RectTransform:
   - {fileID: 2051094348}
   - {fileID: 2089462206}
   - {fileID: 32147059}
+  - {fileID: 981433832}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -840,7 +841,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 780942957}
-  - {fileID: 981433832}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -854,7 +854,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 781847503}
+    m_TransformParent: {fileID: 577344247}
     m_Modifications:
     - target: {fileID: 2295989305506676016, guid: 8caba0d49af47854ba4ac37dfa8577c0,
         type: 3}
@@ -894,7 +894,7 @@ PrefabInstance:
     - target: {fileID: 2295989305506676029, guid: 8caba0d49af47854ba4ac37dfa8577c0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2295989305506676029, guid: 8caba0d49af47854ba4ac37dfa8577c0,
         type: 3}
@@ -949,17 +949,17 @@ PrefabInstance:
     - target: {fileID: 2295989305506676029, guid: 8caba0d49af47854ba4ac37dfa8577c0,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2295989305506676029, guid: 8caba0d49af47854ba4ac37dfa8577c0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2295989305506676029, guid: 8caba0d49af47854ba4ac37dfa8577c0,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 2295989305506676029, guid: 8caba0d49af47854ba4ac37dfa8577c0,
         type: 3}
@@ -1762,12 +1762,17 @@ PrefabInstance:
     - target: {fileID: 6686165565139717222, guid: 3354f4654992ea54c8244f1e98c0e589,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartFadeOut
+      value: ButtonTap
       objectReference: {fileID: 0}
     - target: {fileID: 6686165565139717222, guid: 3354f4654992ea54c8244f1e98c0e589,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ButtonTap
+      value: SceneChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 6686165565139717222, guid: 3354f4654992ea54c8244f1e98c0e589,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SceneChangeManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6686165565139717222, guid: 3354f4654992ea54c8244f1e98c0e589,
         type: 3}

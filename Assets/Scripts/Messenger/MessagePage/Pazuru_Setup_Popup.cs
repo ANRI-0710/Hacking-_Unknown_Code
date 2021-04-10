@@ -129,8 +129,6 @@ public class Pazuru_Setup_Popup :Popup
 
     }
 
-
-
     /// <summary>
     /// ゲームスタートボタンの開始
     /// </summary>
@@ -145,7 +143,7 @@ public class Pazuru_Setup_Popup :Popup
     /// </summary>
     public void Cancel()
     {
-       // Popup_Close(_GamePlay_PopupPanel);
+      // Popup_Close(_GamePlay_PopupPanel);
     }
 
     /// <summary>

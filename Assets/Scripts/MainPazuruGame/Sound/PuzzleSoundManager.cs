@@ -1,11 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-/// <summary>
-/// パズルシーンのBGMとSEを管理するクラス
-/// </summary>
-/// 
 public enum SE_Now 
 {    
     PuzzleDestroy,
@@ -19,58 +13,48 @@ public enum SE_Now
 
 }
 
+/// <summary>
+/// パズルシーンのBGMとSEを管理するクラス
+/// </summary>
 public class PuzzleSoundManager : MonoBehaviour
 {
     public static PuzzleSoundManager Instance { get; private set; }
 
+   /// <summary>
+   /// BGM・及びSE
+   /// </summary>
     [SerializeField]
     private AudioClip BGM_Pazzle;
-
     [SerializeField]
     private AudioClip SE_PuzzleDestruction;
-
     [SerializeField]
     private AudioClip SE_Alert;
-
     [SerializeField]
     private AudioClip SE_EnemyAppearance;
-
     [SerializeField]
     private AudioClip SE_LimitCross;
-
     [SerializeField]
     private AudioClip SE_LimitMax;
-
     [SerializeField]
     private AudioClip SE_SpecialAttackColor;
-
     [SerializeField]
     private AudioClip SE_EnemyDestroy;
-
     [SerializeField]
     private AudioClip SE_EnemyPieceDestroy;
 
-
-
     private AudioSource _audioSource;
 
-    private SE_Now SE_Play_Now;
-    public SE_Now Get_SE__Play_Now 
-    {
-        get => SE_Play_Now;
-        set 
-        {
-            SE_Play_Now = value;
-            SE_Selection(SE_Play_Now);
-        }    
-    }
-
+   
     private void Awake()
     {
         Instance = this;
         _audioSource = GetComponent<AudioSource>();
     }
    
+    /// <summary>
+    /// SE用のenum変数に応じたSE・BGMを再生する
+    /// </summary>
+    /// <param name="se"></param>
     public void SE_Selection(SE_Now se) 
     {
         switch (se) 
@@ -104,6 +88,5 @@ public class PuzzleSoundManager : MonoBehaviour
                 break;
         }    
     }
-
 
 }
