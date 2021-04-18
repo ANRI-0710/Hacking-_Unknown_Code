@@ -1,8 +1,7 @@
 # Hacking-_Unknown_Code
 Hacking _Unknownのリポジトリです。
 
-【お願いしたいこと】<br>
-
+<b>【お願いしたいこと】</b><br>
 ●Unityエディタを開いて動作確認をされる場合は、GameSizeを<b>432*768</b>にして実行お願いいたします。
 RectTransFormでの比率対応が完璧でなく今後アップデート予定になります。
 
