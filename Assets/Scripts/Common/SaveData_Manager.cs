@@ -41,6 +41,9 @@ public class SaveData_Manager : Singleton<SaveData_Manager>
     public const string KEY_BESTTIMESTAGE_9 = "KEY_BESTTIMESTAGE_9";
     public const string KEY_BESTTIMESTAGE_10 = "KEY_BESTTIMESTAGE_10";
 
+    //画面サイズの所得
+    private int Width;
+
     /// <summary>
     /// シングルトンの起動
     /// </summary>

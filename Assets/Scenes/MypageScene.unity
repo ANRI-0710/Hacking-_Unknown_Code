@@ -1823,16 +1823,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Crear_Popup: {fileID: 1480703412}
   _GameOver_Popup: {fileID: 1256538976}
-  Stop_Popup: {fileID: 0}
   sceneChangeManager: {fileID: 2295989305772861783}
   _ComboTextDisplay: {fileID: 0}
   _RecoveryText: {fileID: 0}
+  Stop_Popup: {fileID: 0}
   _UI_Setting_Button: {fileID: 0}
   _TypeImage: {fileID: 0}
   _ClearTimeText: {fileID: 0}
   bestTimeCount: {fileID: 0}
   _Signal: {fileID: 0}
   _WarningPopup: {fileID: 0}
+  UIrectTransform: {fileID: 0}
+  _SignalTransform: {fileID: 0}
+  _PopupTutorial: {fileID: 0}
 --- !u!4 &1392918198
 Transform:
   m_ObjectHideFlags: 0
@@ -2469,6 +2472,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CancelPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 2959582017580900894, guid: 5859b928fae84a348a206b48bb59797b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5859b928fae84a348a206b48bb59797b, type: 3}
 --- !u!224 &1888342911 stripped
@@ -2577,16 +2585,28 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1392918197}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: GameClear
-        m_Mode: 1
+        m_TargetAssemblyTypeName: Popup, Assembly-CSharp
+        m_MethodName: PopupStart
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1480703412}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1480703412}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2018825593
 MonoBehaviour:
@@ -3134,6 +3154,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Turtorial_Mypage
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512635571025111650, guid: abcdb86e78e545242881be5f8081a822,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7512635571025111652, guid: abcdb86e78e545242881be5f8081a822,
         type: 3}

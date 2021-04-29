@@ -35,6 +35,7 @@ public class Particle : MonoBehaviour
     //パーティクルの生成
     [SerializeField]
     private RectTransform _ParticleTransform;
+    public RectTransform GetParticleTransform { get => _ParticleTransform; }
 
     /// <summary>
     /// 3マッチした際のピースの破壊アニメーション

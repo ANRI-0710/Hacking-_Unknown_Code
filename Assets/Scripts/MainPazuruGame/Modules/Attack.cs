@@ -144,5 +144,4 @@ public class Attack : MonoBehaviour
     /// <returns></returns>
     private int NoDamageAttack() { return _nomalPoint; }
 
-
 }

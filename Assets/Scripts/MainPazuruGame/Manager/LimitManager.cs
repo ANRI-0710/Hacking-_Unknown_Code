@@ -5,11 +5,16 @@ using UnityEngine;
 /// </summary>
 public class LimitManager : MonoBehaviour
 {    
-    //リミットボタンマネージャーアクセス
+    //リミットボタン・ゲージへのアクセス
     [SerializeField]
     private LimitGaugeValues _LimitGaugeManager;  
     [SerializeField]
     private LimitButton _LimitButtonManager;
+   
+    //リミットボタンの表示位置の固定
+    [SerializeField]
+    private RectTransform _LimitTransform;
+    public RectTransform GetLimitTransform { get => _LimitTransform; }
 
     //ボタンの数の定数
     private const int _button1 = 0;
@@ -23,7 +28,7 @@ public class LimitManager : MonoBehaviour
         get => isButtonPress[index];
         set { isButtonPress[index] = value; }    
     }
-   
+
     //リミットゲージのMAX値
     private int LimitMax = 100;    
    

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 /// <summary>
 /// UIの位置調整・クリア・ゲームオーバーなどのUI表示・演出を管理するクラス
@@ -41,6 +42,95 @@ public class UIManager : Popup
     private TextDisplay _comboTextObject;
     private TextDisplay _recoveryTextObject;
 
+   //表示レイヤー固定用
+    [SerializeField]
+    private RectTransform UIrectTransform; 　//UIの表示位置の固定
+    public RectTransform GetrectTransform { get => UIrectTransform; }
+    [SerializeField]
+    private RectTransform _SignalTransform; //スタート・クリア・第一層~3層までの表示位置の固定 
+
+    //チュートリアル表示
+    [SerializeField]
+    private Popup_Tutorial _PopupTutorial;
+
+
+    /// <summary>
+    /// [1]警告ポップアップの表示演出
+    /// </summary>
+    /// <param name="a"></param>
+    /// <returns></returns>
+    public IEnumerator ArrartAnim()
+    {
+        yield return new WaitForSeconds(1.0f);
+        WamingArrart(_SignalTransform, UIrectTransform);
+        PuzzleSoundManager.Instance.SE_Selection(SE_Now.Alert);
+        yield return new WaitForSeconds(3.0f);
+       　ArrartClosePopup();
+    }
+
+    /// <summary>
+    ///  [2]初めてパズルパートをプレイする際にチュートリアルを表示する・既読チェックがついてる場合は、スタート開始する
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator Popup_TutorialStart()
+    {       
+        _PopupTutorial.TutorialStart();
+        while (true)
+        {
+            if (_PopupTutorial.GetIsTutrialFinish)
+            {
+                GameManager.Instance.GetIs_Pazuru_Tutorial = (int)ISREAD.READ;
+                PlayerPrefs.SetInt(SaveData_Manager.KEY_ISREAD_PAZURU_TUTORIAL, GameManager.Instance.GetIs_Pazuru_Tutorial);
+                break;
+            }
+            yield return null;
+        }
+    }
+
+
+    /// <summary>
+    ///  [3]スタート開始の合図のコルーチン
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator StartSignal()
+    {
+        SignalPopup("FIRST 1/3", _SignalTransform);
+        yield return new WaitForSeconds(4.0f);      
+    }
+
+    /// <summary>
+    /// [13]クリア画面
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator Clear()
+    {
+        Debug.Log("Clear");
+       IsbestTimeCount();
+       SignalPopup("CLEAR", _SignalTransform);
+        if (GameManager.Instance.GetStageNum >= GameManager.Instance.GetClearNum)
+        {
+            var num = GameManager.Instance.GetStageNum + 1;
+            PlayerPrefs.SetInt(SaveData_Manager.KEY_CLEAR_NUM, num);
+        }
+        yield return new WaitForSeconds(3.0f);
+        GameClear_Display();
+        while (true) { yield return null; }
+    }
+
+    /// <summary>
+    /// [14]ゲームオーバー画面
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator GameOver()
+    {
+        Debug.Log("GameOver");
+        SignalPopup("GAMEOVER", _SignalTransform);
+        yield return new WaitForSeconds(3.0f);
+        //GameOver();
+        GameOver_Display();
+        while (true) { yield return null; }
+
+    }
 
     /// <summary>
     /// 警告ポップアップを出す
@@ -75,7 +165,7 @@ public class UIManager : Popup
     /// <summary>
     /// クリア表示
     /// </summary>
-    public void GameClear()
+    public void GameClear_Display()
     {
         _Crear_Popup.SetActive(true);
         PopupStart(_Crear_Popup);
@@ -84,7 +174,7 @@ public class UIManager : Popup
     /// <summary>
     /// ゲームオーバー表示
     /// </summary>
-    public void GameOver()
+    public void GameOver_Display()
     {
         _GameOver_Popup.SetActive(true);
         PopupStart(_GameOver_Popup);
@@ -115,7 +205,7 @@ public class UIManager : Popup
         _recoveryTextObject = Instantiate(_RecoveryText);
         _recoveryTextObject.transform.SetParent(rectTransform);
         _recoveryTextObject.GetTextDisplayString = "+5";
-        _recoveryTextObject.transform.localPosition = new Vector3(105, 260, 0);
+        _recoveryTextObject.transform.localPosition = new Vector3(105, 350, 0);
         _recoveryTextObject.transform.localScale = new Vector3(1, 1, 1);
         _recoveryTextObject.UI_Text_Display_Recovery();
     }
@@ -123,12 +213,12 @@ public class UIManager : Popup
     /// <summary>
     /// コンボテキストの破壊処理
     /// </summary>
-    public void DestroyTextComboDisplay() { Destroy(_comboTextObject.gameObject); }
+    public void DestroyTextComboDisplay() { Destroy(_comboTextObject.gameObject,0.1f); }
 
     /// <summary>
     ///  5秒回復するカウント表示UIの初期化
     /// </summary>
-    public void DestroyRecoveryDisplay() { Destroy(_recoveryTextObject.gameObject,0.5f); }
+    public void DestroyRecoveryDisplay() { Destroy(_recoveryTextObject.gameObject,0.1f); }
 
     /// <summary>
     /// 最速クリアタイムの保存

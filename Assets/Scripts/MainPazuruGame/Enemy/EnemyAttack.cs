@@ -21,6 +21,7 @@ public class EnemyAttack : MonoBehaviour
     private RectTransform _ParticleTransform;
     [SerializeField]
     private Particle _Particles;
+
     
     //座標変換用
     [SerializeField]
@@ -32,6 +33,8 @@ public class EnemyAttack : MonoBehaviour
     //パズルの行・列の定数
     private const int Cols = 7;
     private const int Rows = 7;
+
+    public int TestAttack;
 
     void Start()
     {
