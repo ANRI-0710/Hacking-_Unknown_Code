@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
     public enum BGM //１つの関数から呼び出しできるようにenum変数を使用
     {
         Title,
@@ -9,7 +13,11 @@
     }
 
     public enum SE //１つの関数から呼び出しできるようにenum変数を使用
+<<<<<<< HEAD
     { 
+=======
+{ 
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
         Popup_Tap,
         Popup_Close,
         Start,

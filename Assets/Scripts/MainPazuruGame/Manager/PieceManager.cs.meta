@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: af1a9b6a4abb62849866b1d30d5d7d56
+=======
+<<<<<<< HEAD:Assets/Scripts/Common/Popup_Tutorial.cs.meta
+guid: 38817096ad2bc864ca6b929a2c6cddb6
+=======
+guid: af1a9b6a4abb62849866b1d30d5d7d56
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79:Assets/Scripts/MainPazuruGame/Manager/PieceManager.cs.meta
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

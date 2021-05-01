@@ -166,8 +166,12 @@ public class GameManager : MonoBehaviour
         }        
         yield return _UiManager.StartSignal(); //既読の場合はそのままスタートシグナルが開始
 
+<<<<<<< HEAD
         StartCoroutine(PieceExchangeTurnLoop());
         StartCoroutine(DebugMenu());
+=======
+        StartCoroutine(PieceExchangeTurnLoop());        
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
     }
 
 
@@ -270,6 +274,7 @@ public class GameManager : MonoBehaviour
         
         var canvassize = _Canvas.GetComponent<RectTransform>();
         canvassize.sizeDelta = new Vector2(w, h);
+<<<<<<< HEAD
     }
 
     /// <summary>
@@ -288,5 +293,9 @@ public class GameManager : MonoBehaviour
 
 
 
+=======
+    }
+
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 }
 

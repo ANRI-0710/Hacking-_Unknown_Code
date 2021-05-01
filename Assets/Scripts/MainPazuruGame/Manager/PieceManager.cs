@@ -85,6 +85,10 @@ public class PieceManager : MonoBehaviour
     /// 
     public void InitBoard()
     {       
+<<<<<<< HEAD
+=======
+        Debug.Log(Width);
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
         //交換するピースの情報を保存するインスタンス
         var obj = Instantiate(_PazuruPrefab, new Vector3(10, 10, 10), Quaternion.identity);
         _inputMemoryPiece = obj.GetComponent<Piece>();
@@ -197,6 +201,10 @@ public class PieceManager : MonoBehaviour
         _pieces[_mouseDown.GetPieceX, _mouseDown.GetPieceY].GetRectTransForm.sizeDelta = new Vector2(0.95f, 0.95f) * Width;
         yield return null;
         _pieces[_mouseUp.GetPieceX, _mouseUp.GetPieceY].GetRectTransForm.sizeDelta = new Vector2(0.95f, 0.95f) * Width;
+<<<<<<< HEAD
+=======
+
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
         //mouseDownの座標を格納
         _inputMemoryPiece.GetPieceState = _pieces[(int)_mouseDown.GetPieceX, (int)_mouseDown.GetPieceY].GetPieceState;
         yield return null;
@@ -230,7 +238,13 @@ public class PieceManager : MonoBehaviour
             {
                 PuzzleSoundManager.Instance.SE_Selection(SE_Now.EnemyPieceDestroy);
                 _pieces[i, 0].GetPieceState = Piece_Type.EMPTY;
+<<<<<<< HEAD
                 GameManager.Instance.GetisDestroy = true;
+=======
+                //isDestroy = true;
+                GameManager.Instance.GetisDestroy = true;
+                //DestroyPiecePaticles(new Vector2(i, 0));
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
             }
             if (_pieces[i, 0].GetPieceState == Piece_Type.EMPTY) { GameManager.Instance.GetisDestroy = true; }
         }
@@ -251,6 +265,10 @@ public class PieceManager : MonoBehaviour
                 for (var p = 0; p < _Same_Block_Check_Direction_X.Length; p++)
                 {
                     bool _CanTurn = false;
+<<<<<<< HEAD
+=======
+
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
                     _DestroyPieceList.Clear();
 
                     //ピースタイプにピースの種類を代入
@@ -303,7 +321,41 @@ public class PieceManager : MonoBehaviour
 
                     if (_CanTurn)
                     {
+<<<<<<< HEAD
                         yield return PieceChangeAction(piecetype);
+=======
+                        if (ComboCount == 0) //コンボカウントが0回の時のみ、敵からの攻撃カウントを減らす
+                        {                            
+                            GameManager.Instance.GetEnemyManager.GetenemyConroll.GetEnemyAttackCount++;
+                        }
+                        if (piecetype != Piece_Type.EMPTY) //ピースが空じゃない場合、コンボ数をプラスする
+                        {
+                            ComboCount++;
+                        }
+                        if (piecetype == Piece_Type.WHITE)
+                        {
+                            //ハート型ウイルスの場合、敵の制限時間を5秒延ばす処理を行う
+                            GameManager.Instance.GetEnemyManager.GetenemyConroll.GetEnemyTimeLimit += 5;
+                            GameManager.Instance.GetUIManager.InitTextRecoveryDisplay(GameManager.Instance.GetUIManager.GetrectTransform);
+                            yield return new WaitForSeconds(0.4f);
+                            GameManager.Instance.GetUIManager.DestroyRecoveryDisplay();
+                        }
+
+                        //敵への攻撃処理
+                        GameManager.Instance.GetEnemyManager.GetenemyConroll.AttackEnemy(piecetype, ComboCount);
+
+                        //コンボチェックをし爆破演出行う
+                        Pazuru_Combo_Count(_DestroyPieceList, _DestroyPieceList.Count);
+
+                        //破壊するピースが確定するため、破壊処理のフラグをオンする
+                        GameManager.Instance.GetisDestroy = true;                        
+                        yield return new WaitForSeconds(0.2f);
+                        
+                        //何コンボかを表示する
+                        GameManager.Instance.GetUIManager.InitTextComboDisplay(GameManager.Instance.GetUIManager.GetrectTransform, ComboCount);
+                        yield return null;
+                        GameManager.Instance.GetUIManager.DestroyTextComboDisplay();
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
                     }
                 }
 
@@ -311,7 +363,25 @@ public class PieceManager : MonoBehaviour
 
         }
         yield return null;
+<<<<<<< HEAD
         yield return ExchangeCancelPiece();
+=======
+
+        if (!GameManager.Instance.GetisDestroy)
+        {
+            ////コンボカウントが0の場合、3つ揃っているピースがない（＝交換しても3マッチが成立していない）ため、タップ交換のコルーチンに戻る
+            if (ComboCount == 0)
+            {
+                //交換したピースを元に戻す
+                _inputMemoryPiece.GetPieceState = _pieces[(int)_mouseUp.GetPieceX, (int)_mouseUp.GetPieceY].GetPieceState;
+                yield return null;
+                //mouseDown ←　mouseUp
+                _pieces[(int)_mouseUp.GetPieceX, (int)_mouseUp.GetPieceY].GetPieceState = _pieces[(int)_mouseDown.GetPieceX, (int)_mouseDown.GetPieceY].GetPieceState;
+                yield return null;
+                _pieces[(int)_mouseDown.GetPieceX, (int)_mouseDown.GetPieceY].GetPieceState = _inputMemoryPiece.GetPieceState;
+            }
+        }
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
         yield break;
     }
 
@@ -433,6 +503,7 @@ public class PieceManager : MonoBehaviour
     private void Pazuru_Combo_Count(List<Blocks> destroylist, int listcount)
     {
         Debug.Log("Pazuru_Combo_Count");
+<<<<<<< HEAD
         var piecetype = FeverComboPiece(listcount);       
         foreach (var i in destroylist)
         {
@@ -530,6 +601,70 @@ public class PieceManager : MonoBehaviour
 
     }
 
+=======
+        if (listcount == _piece_Match_5)
+        {
+            foreach (var i in destroylist)
+            {
+
+                if (i == destroylist.First())
+                {
+                    _pieces[i.Getx(), i.Gety()].GetPieceState = Piece_Type.FEVER_5;
+                    DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
+                    GameManager.Instance.GetParticle.PlayerAttackToEnemy(_ParticleTransform);
+                    PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
+                }
+                else
+                {
+                    _pieces[i.Getx(), i.Gety()].GetPieceState = Piece_Type.EMPTY;
+                    GameManager.Instance.GetParticle.PlayerAttackToEnemy(_ParticleTransform);
+                    DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
+                }
+                GameManager.Instance.GetLimitManager.LimitPlus();
+            }
+
+        }
+        else if (listcount == _piece_Match_4)
+        {
+            foreach (var i in destroylist)
+            {
+                if (i == destroylist.First())
+                {
+                    _pieces[i.Getx(), i.Gety()].GetPieceState = Piece_Type.FEVER_4;
+                    DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
+                    PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
+                }
+                else
+                {
+                    _pieces[i.Getx(), i.Gety()].GetPieceState = Piece_Type.EMPTY;
+                    GameManager.Instance.GetParticle.PlayerAttackToEnemy(_ParticleTransform);
+                    DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
+                }
+                GameManager.Instance.GetLimitManager.LimitPlus();
+
+            }
+        }
+        else if (listcount == _piece_Match_3)
+        {
+            foreach (var i in destroylist)
+            {
+                if (i == destroylist.First())
+                {
+                    DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
+                    GameManager.Instance.GetParticle.PlayerAttackToEnemy(_ParticleTransform);
+                    PuzzleSoundManager.Instance.SE_Selection(SE_Now.PuzzleDestroy);
+                }
+                _pieces[i.Getx(), i.Gety()].GetPieceState = Piece_Type.EMPTY;
+                GameManager.Instance.GetParticle.PlayerAttackToEnemy(_ParticleTransform);
+                DestroyPiecePaticles(new Vector2(i.Getx(), i.Gety()));
+                GameManager.Instance.GetLimitManager.LimitPlus();
+            }
+        }
+
+    }
+
+
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
     /// <summary>
     /// FEVERピースを交換した場合、交換した4or8方向に対して削除フラグと爆破アニメーションを行う
     /// </summary>
@@ -568,7 +703,18 @@ public class PieceManager : MonoBehaviour
     {
         for (var i = 0; i < Rows; i++)
         {
+<<<<<<< HEAD
             for (var k = 0; k < Cols; k++) { _pieces[i, k].SetSize(Width); }            
         }
     }
+=======
+            for (var k = 0; k < Cols; k++)
+            {
+                _pieces[i, k].SetSize(Width);
+            }
+        }
+    }
+
+
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 }

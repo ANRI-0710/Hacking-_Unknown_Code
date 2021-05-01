@@ -30,7 +30,11 @@ public class Enemy_Status : MonoBehaviour
     private InputFile _inputFile;
 
     //ステージナンバーの選択(playerprefか所得する)
+<<<<<<< HEAD
     private int _stageNum;
+=======
+    private int StageNum;
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 
     //テキストファイルから読み取ったデータを構造体に入れるための変数
     private EnemyStatus[] _enemyInput;
@@ -43,6 +47,7 @@ public class Enemy_Status : MonoBehaviour
     private void Awake()
     {
         //playerplefから選択したパズルステージを受け取り、テキストデータを受けとる
+<<<<<<< HEAD
         _stageNum = PlayerPrefs.GetInt("STAGENUM", 0);          
         var str = _inputFile.Text_File_Get(_stageNum);
         _inputFile.Input_File(str);
@@ -52,6 +57,14 @@ public class Enemy_Status : MonoBehaviour
 
         //受け取ったテキストファイルの行数分の構造体を生成する
         _enemyInput = new EnemyStatus[_inputFile.GetInputRows];
+=======
+        StageNum = PlayerPrefs.GetInt("STAGENUM", 0);          
+        var str = _inputFile.Text_File_Get(StageNum);
+        _inputFile.Input_File(str);
+
+        //受け取ったtテキストファイルの行数分の構造体を生成する
+        EnemyInput = new EnemyStatus[_inputFile.GetInputRows];
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
         
         //受け取ったテキストファイルをそれぞれの構造体の変数に代入する
         for (var i = 0; i < _inputFile.GetInputRows; i++) 
@@ -119,8 +132,30 @@ public class Enemy_Status : MonoBehaviour
     public EnemyStatus SetEnemyStatus(int num)
     {
         //敵の出現番号
+<<<<<<< HEAD
         var result = _enemyInput[num];
         return result;
+=======
+        const int enemy1 = 0;
+        const int enemy2 = 1;
+        const int enemy3 = 2;
+
+        switch (num) 
+        {
+            case enemy1:
+                var result = EnemyInput[(int)Row.Row_1];
+                return result;
+            case enemy2:
+                result = EnemyInput[(int)Row.Row_2];
+                return result;
+            case enemy3:
+                result = EnemyInput[(int)Row.Row_3];
+                return result;
+            default:
+                result = EnemyInput[(int)Row.Row_1];
+                return result;
+        }
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
     }
 }
 

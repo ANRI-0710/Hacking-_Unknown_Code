@@ -42,12 +42,15 @@ public class Blocks
         this.pieceType = pieceType;
     }
 
+<<<<<<< HEAD
     internal int indexof()
     {
         throw new NotImplementedException();
     }
 }
 
+=======
+>>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 /// <summary>
 /// パズルピース（1個単位）クラス
 /// </summary>
