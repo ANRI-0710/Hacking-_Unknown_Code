@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 /// <summary>
 /// 座標変換クラス
 /// </summary>
 /// 
-
 public class VectorReturn : MonoBehaviour
 {
     [SerializeField]
@@ -26,10 +24,16 @@ public class VectorReturn : MonoBehaviour
         pointer = new PointerEventData(EventSystem.current);
      }
 
+    /// <summary>
+    /// UIキャンバス上でピースを生成しているため、通常のRayCastでは感知がしない
+    /// そのためEventSystemのRaycastResultクラスを使用し、すべてのオブジェクトをリストに入れ、ピースタグが付いてるものをリターンする
+    /// </summary>
+    /// <param name="piece"></param>
+    /// <returns></returns>
     public Piece ReturnRaycastPiece(Piece piece)
     {
+        //NULLが入らないようにするため予めピース座標を入れる
         _Piece = piece;
-        //results = new List<RaycastResult>();
         // マウスポインタの位置にレイ飛ばし、ヒットしたものを保存
         pointer.position = Input.mousePosition;
         EventSystem.current.RaycastAll(pointer, results);
@@ -43,8 +47,9 @@ public class VectorReturn : MonoBehaviour
                 _Piece = target.gameObject.GetComponent<Piece>();
             }
             else 
-            {                
-              break;             
+            {
+                _Piece = piece;
+              
             }                           
         }
         return _Piece;

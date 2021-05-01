@@ -1,40 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System;
 
-/// <summary>
-/// パズルピース（1個単位）
-/// </summary>
-
-//３つ以上揃う場合削除するブロックの位置を保存する
-public class Blocks
-{
-    private int x;
-    private int y;
-    private Piece_Type pieceType;
-
-    public int Getx() { return x; }
-    public int Gety() { return y; }
-    public Piece_Type Getboxtype() { return pieceType; }
-
-    public Blocks() { }
-
-    //コンストラクタ1
-    public Blocks(int x, int y)
-    {
-        this.x = x;
-        this.y = y;
-    }
-    //コンストラクタ
-    public Blocks(int x, int y, Piece_Type pieceType)
-    {
-        this.x = x;
-        this.y = y;
-        this.pieceType = pieceType;
-    }
-}
-
-public enum Piece_Type
+public enum Piece_Type //ピースタイプ
 {
     RED,
     BLUE,
@@ -48,17 +17,56 @@ public enum Piece_Type
     EMPTY,
 }
 
+//３つ以上揃う場合削除するブロックの位置を保存するクラス
+public class Blocks
+{
+    private int x;   
+    private int y;  
+    private Piece_Type pieceType;
+
+    public int Getx() { return x; }
+    public int Gety() { return y; }
+    public Piece_Type Getboxtype() { return pieceType; }
+
+    //コンストラクタ1
+    public Blocks(int x, int y)
+    {
+        this.x = x;
+        this.y = y;
+    }    
+    //コンストラクタ
+    public Blocks(int x, int y, Piece_Type pieceType)
+    {
+        this.x = x;
+        this.y = y;
+        this.pieceType = pieceType;
+    }
+
+    internal int indexof()
+    {
+        throw new NotImplementedException();
+    }
+}
+
+/// <summary>
+/// パズルピース（1個単位）クラス
+/// </summary>
 public class Piece : MonoBehaviour
 {
+    //ピースクラス
     [SerializeField]
-    private Sprite[] Sprites;
-
+    private Sprite[] Sprites;    
+    
+    //ピースの画像
     [SerializeField]
     private Image[] Images;
+    private Image _pieceImage;
 
+    //ピースタイプ（エディタ上で確認するため）
     [SerializeField]
     private Piece_Type PieceColorState;
 
+    //ピースタイプを受け取り、enumが変わった場合、イメージを変更する
     public Piece_Type GetPieceState
     {
         get { return PieceColorState; }
@@ -69,40 +77,33 @@ public class Piece : MonoBehaviour
         }
     }
 
-    private Image _Image;
-    private ParticleSystem _ParticleGameObject;
-
-    private Animator _Animator;
-
-    private RectTransform _RectTransForm;
-    public RectTransform _GetRectTransForm
+    //座標所得
+    private RectTransform _rectTransForm;
+    public RectTransform GetRectTransForm
     {
-        get { return _RectTransForm; }
+        get { return _rectTransForm; }
         set
         {
-            _RectTransForm = value;
+            _rectTransForm = value;
         }
 
     }
 
-    //private _PatricleObject;
-
-    //配列番号所得用
+    //ピースの座標位置及び配列番号の登録をしてコントロールをする
     private int x;
     private int y;
-
     public int GetPieceX { get { return x; } set { x = value; } }
     public int GetPieceY { get { return y; } set { y = value; } }
 
     private void Awake()
     {
-        _RectTransForm = this.GetComponent<RectTransform>();
-        _Image = this.GetComponent<Image>();
-        
-        //Sprites = this.GetComponent<Sprite>();
-        
+        _rectTransForm = this.GetComponent<RectTransform>();
+        _pieceImage = this.GetComponent<Image>();        
     }
 
+    /// <summary>
+    /// ピースの画像を変更する
+    /// </summary>
     private void ChangePieceColor()
     {
         switch (PieceColorState)
@@ -138,33 +139,24 @@ public class Piece : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 落下演出のため、0.1秒間を置いて、イメージ画像を変更する
+    /// </summary>
+    /// <param name="piecetype"></param>
+    /// <returns></returns>
     IEnumerator ChangePiece(Piece_Type piecetype)
     {      
         this.GetComponent<Image>().enabled = true;
-        yield return new WaitForSeconds(0.1f);
-        //_Image = _Image[(int)piecetype];       
+        yield return new WaitForSeconds(0.1f);   
+        _pieceImage.sprite = Sprites[(int)piecetype];  
 
-        _Image.sprite = Sprites[(int)piecetype];  
-        //var p = this.GetComponent<Image>();
-        //p = Images[(int)piecetype];
     }
 
-    public void SetSize(int size) 
-    {
-        //this._RectTransForm.sizeDelta = Vector2.one * size;  
-        this._RectTransForm.sizeDelta = new Vector2(0.95f,0.95f) * size;
-    }
+    /// <summary>
+    /// 画面サイズに併せてピースのサイズを変更する
+    /// </summary>
+    /// <param name="size"></param>
+    public void SetSize(int size) { this._rectTransForm.sizeDelta = new Vector2(0.95f, 0.95f) * size; }
 
-    public void PieceAnimationTrue() 
-    {
-        _Animator = GetComponent<Animator>();
-        _Animator.SetBool("Piece_Select", true);
-    }
-
-    public void PieceAnimationFalse()
-    {
-        _Animator = GetComponent<Animator>();
-        _Animator.SetBool("Piece_Select", false);
-    }
 
 }

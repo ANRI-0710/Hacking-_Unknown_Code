@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// 共通で使用するサウンド管理クラス（パズルパート以外のSE・BGMの再生）
-/// </summary>
-/// 
-    //１つの関数から呼び出しできるようにenum変数を使用
-    public enum BGM 
+    public enum BGM //１つの関数から呼び出しできるようにenum変数を使用
     {
         Title,
         Mypage,
@@ -13,7 +8,7 @@
         Stop
     }
 
-    public enum SE
+    public enum SE //１つの関数から呼び出しできるようにenum変数を使用
     { 
         Popup_Tap,
         Popup_Close,
@@ -21,7 +16,10 @@
         Cancel,
         Messeage,
     }
-
+/// <summary>
+/// パズルパート以外のSE・BGM管理クラス
+/// </summary>
+/// 
 public class Common_Sound_Manager : Singleton<Common_Sound_Manager>
 {   
     //BGM
@@ -32,7 +30,7 @@ public class Common_Sound_Manager : Singleton<Common_Sound_Manager>
     [SerializeField]
     private AudioClip _BGM_PazuruGameSccene;
 
-    //ポップアップ
+    //タップ時のSE
     [SerializeField]
     private AudioClip _SE_Popup_Tap;
     [SerializeField]
@@ -40,7 +38,7 @@ public class Common_Sound_Manager : Singleton<Common_Sound_Manager>
     [SerializeField]
     private AudioClip _SE_Start_Tap;
 
-    //メッセンジャー
+    //メッセンジャー風アプリの効果音
     [SerializeField]
     private AudioClip _SE_Messeage;
     
@@ -82,8 +80,6 @@ public class Common_Sound_Manager : Singleton<Common_Sound_Manager>
             case BGM.Mypage:
                 Instance._AudioSource.clip = _BGM_Mypage;
                 Instance._AudioSource.Play();
-                break;
-            case BGM.Pazuru:
                 break;
             case BGM.Stop:              
                 Instance._AudioSource.Stop();

@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 /// <summary>
-/// リザルト画面更新するクラス
+/// 最速クリアタイムを更新するクラス
 /// </summary>
 
 public class ResultSceneBestTimes : MonoBehaviour
 {
     [SerializeField]
     private Text[] TimeScoreText;
-
     private Text[] TimeScoreTextLine;
 
     private int[] ScoreTimeStageNum;
@@ -28,6 +25,7 @@ public class ResultSceneBestTimes : MonoBehaviour
             TimeScoreTextLine[i] = TimeScoreText[i].GetComponent<Text>();
         }
 
+       //クリアステージの出力と更新
         ScoreTimeStageNum[0] = PlayerPrefs.GetInt(SaveData_Manager.KEY_BESTTIMESTAGE_1, 0);
         ScoreTimeStageNum[1] = PlayerPrefs.GetInt(SaveData_Manager.KEY_BESTTIMESTAGE_2, 0);
         ScoreTimeStageNum[2] = PlayerPrefs.GetInt(SaveData_Manager.KEY_BESTTIMESTAGE_3, 0);
@@ -39,17 +37,11 @@ public class ResultSceneBestTimes : MonoBehaviour
         ScoreTimeStageNum[8] = PlayerPrefs.GetInt(SaveData_Manager.KEY_BESTTIMESTAGE_9, 0);
         ScoreTimeStageNum[9] = PlayerPrefs.GetInt(SaveData_Manager.KEY_BESTTIMESTAGE_10, 0);
 
-
         for (var k = 0; k < TimeScoreText.Length; k++) 
         {
-
             var str = new TimeSpan(0, 0, ScoreTimeStageNum[k]);
-
             TimeScoreTextLine[k].text = str.ToString();
-
         }
-
-
 
     }
 

@@ -1,26 +1,33 @@
 ﻿using UnityEngine;
 
 /// <summary>
-///GridManagerから生成の指示を受け取り敵を生成を管理するクラス
+///敵を生成するクラス
 /// </summary>
 public class EnemyFactory : MonoBehaviour
 {
+    //敵クラス
     [SerializeField]
-    private BaseEnemy _Enemy;  
-    private BaseEnemy EnemyConroll;
-
+    private Enemy _Enemy;  
+    private Enemy EnemyConroll;
     [SerializeField]
     private RectTransform _EnemyTransform;
 
+   //敵の画像（この配列番号に合わせた敵画像を表示する）
     [SerializeField]
     private Sprite[] _EnemyImageManagaer;
 
-    public BaseEnemy EnemyInstance(int num,EnemyStatus status)
+    /// <summary>
+    /// 敵の構造体データをBaseEnemyに渡し、リターンをする
+    /// </summary>
+    /// <param name="num"></param>
+    /// <param name="status"></param>
+    /// <returns></returns>
+    public Enemy EnemyInstance(EnemyStatus status)
     {
-        EnemyConroll =  Instantiate(_Enemy);
-        EnemyConroll = EnemyConroll.GetComponent<BaseEnemy>();
+        EnemyConroll = Instantiate(_Enemy);
+        EnemyConroll = EnemyConroll.GetComponent<Enemy>();
         EnemyConroll.EnemyInitImage(_EnemyImageManagaer[status.GetenemyImageNum]);
-        EnemyConroll.EnemyInit(status.GetenemyHp, status.GetenemyHp, 0.6f, 0.03f, 100f, status.GetPiece_Type, status.Gethindrance_Piece,status.GetEnemyAttackType,status.GetEnemyTimeLimit); 
+        EnemyConroll.EnemyInit(status.GetenemyHp, status.GetenemyHp, 0.6f, 0.03f, status.GetPiece_Type, status.Gethindrance_Piece, status.GetEnemyAttackType, status.GetEnemyTimeLimit);
         return EnemyConroll;
     }
 

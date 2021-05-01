@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 必殺技セットとパズルステージへの遷移のポップアップ
+/// </summary>
+
 public class Pazuru_Setup_Popup :Popup
 {
     [SerializeField]
@@ -40,6 +44,9 @@ public class Pazuru_Setup_Popup :Popup
         _DropDown.value = 0;
     }
 
+   /// <summary>
+   /// ドロップダウンメニューから必殺技を選択し、選んだ必殺技の番号を記録しパズルステージで反映させる
+   /// </summary>
     public void SpecialAttack_Select1() 
     {
         var selectnow = _DropDown.value;
@@ -99,6 +106,10 @@ public class Pazuru_Setup_Popup :Popup
 
     }
 
+    /// <summary>
+    /// 必殺技を登録する
+    /// </summary>
+    /// <param name="attacktype"></param>
     private void SetAttackNumber(E_SpecialAttack attacktype) 
     {
 
@@ -118,8 +129,6 @@ public class Pazuru_Setup_Popup :Popup
 
     }
 
-
-
     /// <summary>
     /// ゲームスタートボタンの開始
     /// </summary>
@@ -134,7 +143,7 @@ public class Pazuru_Setup_Popup :Popup
     /// </summary>
     public void Cancel()
     {
-       // Popup_Close(_GamePlay_PopupPanel);
+      // Popup_Close(_GamePlay_PopupPanel);
     }
 
     /// <summary>

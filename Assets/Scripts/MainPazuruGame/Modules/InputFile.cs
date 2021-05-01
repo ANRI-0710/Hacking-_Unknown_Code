@@ -1,40 +1,64 @@
 ﻿using UnityEngine;
 
-/// <summary>
-/// 敵のステータス・メッセンジャー風会話をテキストファイルから読み込むクラス
-/// </summary>
 
+public enum Column //列番号
+{
+    Col_0,
+    Col_1,
+    Col_2,
+    Col_3,
+    Col_4,
+    Col_5
+}
+
+public enum Row //行番号
+{
+    Row_0,
+    Row_1,
+    Row_2,
+    Row_3,
+    Row_4,
+    Row_5
+}
+
+/// <summary>
+/// テキストファイルから敵のステータス・メッセンジャー風会話を読み込むクラス
+/// </summary>
 public class InputFile : MonoBehaviour
 {
-    public string[] textMessage;    //テキストの加工前の一行を入れる       
-    private string[,] textWords; //複数列入れる
-    public string[] tempWords;
-    private string[] textWordstruct;
+    //テキストの加工前の一行を入れる・インデクサーに変更予定
+    public string[] textMessage;
 
-    public string[,] GetStrings 
+    //複数列入れる
+    private string[,] _textWords;
+    public string[,] GetStrings
     {
-        get => textWords;        
+        get => _textWords;        
     }
 
-    private int Rows;   //行
-    private int Cols;    //列   
     //行・列の所得
+    private int Rows;
+    private int Cols;  
     public int GetInputRows { get => Rows; }
     public int GetInputCols { get => Cols; }
    
-    public string[,] str0 = new string[1,4];
-    public string[,] str1 = new string[1, 4];
-    public string[,] str2 = new string[1, 4];
-   
+    /// <summary>
+    /// ステージ番号を受け取って、ステージ番号のファイル名を所得する
+    /// </summary>
+    /// <param name="num">ステージナンバー</param>
+    /// <returns></returns>
     public string Text_File_Get(int num)
     {
         var str = "Stage"+ num;
         return str;
     }
 
+    /// <summary>
+    /// 該当ファイルを読み込んでtextWordsにデータを入れる
+    /// </summary>
+    /// <param name="str"></param>
     public void Input_File(string str)
-    {
-        //var enemystaus = new EnemyStatus();      
+    {   
         TextAsset textAsset = new TextAsset();
         textAsset = Resources.Load(str, typeof(TextAsset)) as TextAsset;
         string TextLines = textAsset.text;
@@ -47,17 +71,16 @@ public class InputFile : MonoBehaviour
         Cols = textMessage[0].Split('\t').Length;
         Rows = textMessage.Length;
         //2次元配列を定義
-        textWords = new string[Rows, Cols];
+        _textWords = new string[Rows, Cols];
         
         for (var i = 0; i < Rows; i++)
         {
-            //textMasseageをカンマごとに分けたものを一時的にtempWordsに代入
-           
-           string[] tempWords = textMessage[i].Split('\t');
+            //textMasseageをカンマごとに分けたものを一時的にtempWordsに代入           
+           　string[] tempWords = textMessage[i].Split('\t');
             
             for (var k = 0; k < Cols; k++)
             {
-                textWords[i, k] = tempWords[k];
+                _textWords[i, k] = tempWords[k];
             }
         }
     }

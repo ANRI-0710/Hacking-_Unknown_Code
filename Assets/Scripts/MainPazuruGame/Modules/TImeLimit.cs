@@ -1,26 +1,30 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 /// <summary>
 /// タイムリミットの秒数画像を表示するクラス
 /// </summary>
-
 public class TImeLimit : MonoBehaviour
 {
     [SerializeField]
     private GameObject _TimeLimit;
-    private Text Str;
-    private GameObject _Object;
-    private RectTransform rectTransform;
 
-    private int _TimeLimitNum;
+    //子オブジェクト所得用変数
+    private GameObject _timeLimitObject;
+
+    //タイムカウントの表示へのアクセス
+    private Text _timeCountString;
+    private RectTransform _rectTransform;
+
+    //制限時間の所得
+    private int _timeLimitNum;
     public int GetTimeLimitint 
     {
-        get => _TimeLimitNum;
+        get => _timeLimitNum;
         set 
         {
-            _TimeLimitNum = value;
+            _timeLimitNum = value;
             TimeCount();
         }        
     }
@@ -28,27 +32,35 @@ public class TImeLimit : MonoBehaviour
 
     void Awake()
     {       
-        rectTransform = GetComponent<RectTransform>();       
+        _rectTransform = GetComponent<RectTransform>();       
     }
 
     private void Start()
     {
-        _Object = _TimeLimit.transform.GetChild(0).gameObject;     
+        _timeLimitObject = _TimeLimit.transform.GetChild(0).gameObject;     
     }
 
+    /// <summary>
+    /// タイムカウントの表示
+    /// </summary>
     public void TimeCount() 
     {
-        var span = new TimeSpan(0, 0, _TimeLimitNum);
-        Str = _Object.GetComponent<Text>();
-        Str.text = span.ToString();
+        var span = new TimeSpan(0, 0, _timeLimitNum);
+        _timeCountString = _timeLimitObject.GetComponent<Text>();
+        _timeCountString.text = span.ToString();
       
     }
 
+    /// <summary>
+    /// 座標調整
+    /// </summary>
+    /// <param name="Reductionwidth"></param>
+    /// <param name="Reductionheight"></param>
     public void InitSetsize(float Reductionwidth, float Reductionheight)
     {
         var sizewidth = (int)((int)Screen.width * Reductionwidth);
         var sizeheight = (int)((int)Screen.height * Reductionheight);
-        rectTransform.sizeDelta = new Vector2(sizewidth, sizeheight);
+        _rectTransform.sizeDelta = new Vector2(sizewidth, sizeheight);
     }
 
 }

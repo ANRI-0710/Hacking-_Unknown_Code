@@ -2,10 +2,11 @@
 using DG.Tweening;
 
 /// <summary>
-/// ポップアップのオープン・クローズのアニメーションの基底クラス
+/// ポップアップのオープン・クローズを管理するクラス
 /// </summary>
 public class Popup : MonoBehaviour
-{   
+{
+    //ポップアップアニメーションの速度管理
     private float _durationDoTweenTime = 0.2f;
     private float _openValue = 1.0f;
     private float _cloaseValue = 0f;
@@ -18,7 +19,7 @@ public class Popup : MonoBehaviour
     public void PopupStart(GameObject popupcanvas)
     {
         Common_Sound_Manager.Instance.SE_Play(SE.Popup_Tap);
-        popupcanvas.transform.localScale = new Vector3(0f, 0f, 0f);
+        popupcanvas.transform.localScale = new Vector3(0,0,0);
         popupcanvas.transform.DOScale(_openValue, _durationDoTweenTime);
     }
   
@@ -43,4 +44,5 @@ public class Popup : MonoBehaviour
     {
         popupcanvas.SetActive(false);
     }
+   
 }
