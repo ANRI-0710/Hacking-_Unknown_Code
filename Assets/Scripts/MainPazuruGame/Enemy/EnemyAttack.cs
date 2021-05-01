@@ -21,7 +21,6 @@ public class EnemyAttack : MonoBehaviour
     private RectTransform _ParticleTransform;
     [SerializeField]
     private Particle _Particles;
-<<<<<<< HEAD
   
     //座標変換用
     [SerializeField]
@@ -33,31 +32,11 @@ public class EnemyAttack : MonoBehaviour
     //パズルの行・列の定数
     private const int _cols = 7;
     private const int _rows = 7;
-=======
-
-    
-    //座標変換用
-    [SerializeField]
-    private VectorReturn _VectorReturn;
-
-    //スクリーンサイズを所得しパーティクルの生成画面サイズに併せて調整するため
-    private int Width;
-
-    //パズルの行・列の定数
-    private const int Cols = 7;
-    private const int Rows = 7;
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
-
-    public int TestAttack;
 
     void Start()
     {
         //スクリーンサイズを所得しパーティクルの生成画面サイズに併せて調整
-<<<<<<< HEAD
         _Width = (Screen.width / _cols);
-=======
-        Width = (Screen.width / Cols);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
     }
 
     /// <summary>
@@ -103,11 +82,7 @@ public class EnemyAttack : MonoBehaviour
         var x = Random.Range(0, _cols);
         var y = Random.Range(0, _rows);
 
-<<<<<<< HEAD
         var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), _Width);
-=======
-        var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
         _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
         Pieces[x, y].GetPieceState = Piece_Type.BLACK;
     }
@@ -123,11 +98,7 @@ public class EnemyAttack : MonoBehaviour
             var x = Random.Range(0, _cols);
             var y = Random.Range(0, _rows);
             
-<<<<<<< HEAD
             var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), _Width);
-=======
-            var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
             _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
             Pieces[x, y].GetPieceState = Piece_Type.BLACK;          
         }
@@ -141,15 +112,9 @@ public class EnemyAttack : MonoBehaviour
     {       
         for (var i = 0; i < 4; i++)
         {
-<<<<<<< HEAD
             var x = Random.Range(0, _cols);
             var y = Random.Range(0, _rows);
             var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), _Width);
-=======
-            var x = Random.Range(0, Cols);
-            var y = Random.Range(0, Rows);
-            var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 
             _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
             Pieces[x, y].GetPieceState = Piece_Type.BLACK;            
@@ -164,15 +129,9 @@ public class EnemyAttack : MonoBehaviour
     {
         for (var i = 0; i < _rows; i++)
         {
-<<<<<<< HEAD
             for (var k = 0; k < _cols; k++)
             {              
                 var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(k, 3), _Width);
-=======
-            for (var k = 0; k < Cols; k++)
-            {              
-                var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(k, 3), Width);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
                 _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
                 Pieces[k, 3].GetPieceState = Piece_Type.BLACK;             
             }
@@ -192,11 +151,7 @@ public class EnemyAttack : MonoBehaviour
 
                 if (k != 0) 
                 {
-<<<<<<< HEAD
                     var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(3, k), _Width);
-=======
-                    var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
                     _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
                     Pieces[3, k].GetPieceState = Piece_Type.BLACK;
                 }
@@ -215,20 +170,13 @@ public class EnemyAttack : MonoBehaviour
         {
             for (var k = 0; k < _rows; k++)
             {
-                Pieces[3, k].GetPieceState = Piece_Type.EMPTY;
+                Pieces[3, k].GetPieceState = Piece_Type.BLACK;
 
-<<<<<<< HEAD
                 var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(3, k), _Width);
                 _Particles.PlayerDestroyParticles(criatePos, _ParticleTransform);
 
                 var criatePos1 = _VectorReturn.GetPieceWorldPos(new Vector2(k, 3), _Width);
-=======
-                var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);
-                _Particles.PlayerDestroyParticles(criatePos, _ParticleTransform);
-
-                var criatePos1 = _VectorReturn.GetPieceWorldPos(new Vector2(k, 3), Width);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
-                Pieces[k, 3].GetPieceState = Piece_Type.EMPTY;
+                Pieces[k, 3].GetPieceState = Piece_Type.BLACK;
 
                 _Particles.PlayerDestroyParticles(criatePos, _ParticleTransform);
                 _Particles.PlayerDestroyParticles(criatePos1, _ParticleTransform);
@@ -246,15 +194,9 @@ public class EnemyAttack : MonoBehaviour
         {
             for (var k = 0; k < _cols; k++)
             {
-<<<<<<< HEAD
                 var col = _cols - 1;
                 var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(k, k), _Width);
                 var criatePos2 = _VectorReturn.GetPieceWorldPos(new Vector2(col - i, k), _Width);
-=======
-                var col = Cols - 1;
-                var criatePos = _VectorReturn.GetPieceWorldPos(new Vector2(k, k), Width);
-                var criatePos2 = _VectorReturn.GetPieceWorldPos(new Vector2(col - i, k), Width);
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 
                 _Particles.EnemyAttackParticles(criatePos, _ParticleTransform);
                 _Particles.EnemyAttackParticles(criatePos2, _ParticleTransform);

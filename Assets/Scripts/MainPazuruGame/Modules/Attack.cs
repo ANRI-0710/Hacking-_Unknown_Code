@@ -16,11 +16,7 @@ public class Attack : MonoBehaviour
     /// <param name="piece">3マッチしたパズル</param>
     /// <param name="enemy"></param>
     /// <param name="comboCount"></param>
-<<<<<<< HEAD
     public void PieceAttack(Piece_Type piece,Enemy enemy,int comboCount) 
-=======
-    public void PieceAttack(Piece_Type piece,BaseEnemy enemy,int comboCount) 
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
     {       
         switch (piece) 
         {

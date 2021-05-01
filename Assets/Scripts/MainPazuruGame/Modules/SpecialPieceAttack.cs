@@ -29,14 +29,28 @@ public class SpecialPieceAttack : MonoBehaviour
     private VectorReturn vectorReturn;
 
     private int Width;
-    private const int Cols = 7;
-    private const int Rows = 7;
-    private const int Piece_Attack_Count = 10;
+    private const int _cols = 7;
+    private const int _rows = 7;
+    private const int _piece_Attack_Count = 10;
+    private const int _specialAttackCount = 2;
 
     void Start()
     {
         //スクリーンサイズの所得
-        Width = (Screen.width / Cols);
+        Width = (Screen.width / _cols);
+    }
+
+    /// <summary>
+    /// 必殺技の登録の初期化
+    /// </summary>
+    public void InitSpecialAttack() 
+    {
+        for (var i = 0; i < _specialAttackCount; i++)
+        {
+            var str1 = "ATTACK";
+            var str2 = i + 1;
+            GameManager.Instance[i] = PlayerPrefs.GetInt(str1 + str2, 0);
+        }
     }
 
     /// <summary>
@@ -88,10 +102,10 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_Red(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
-        for (var i = 0; i < Piece_Attack_Count; i++)
+        for (var i = 0; i < _piece_Attack_Count; i++)
             {
-                var x = Random.Range(0, Cols);
-                var y = Random.Range(0, Rows);
+                var x = Random.Range(0, _cols);
+                var y = Random.Range(0, _rows);
                 
                 var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);  
                 _Particles.Color_10_Piece(criatePos, _ParticleTransform);
@@ -106,10 +120,10 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_Blue(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
-        for (var i = 0; i < Piece_Attack_Count; i++)
+        for (var i = 0; i < _piece_Attack_Count; i++)
         {
-            var x = Random.Range(0, Cols);
-            var y = Random.Range(0, Rows);
+            var x = Random.Range(0, _cols);
+            var y = Random.Range(0, _rows);
 
             var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
             _Particles.Color_10_Piece(criatePos, _ParticleTransform);
@@ -124,10 +138,10 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_Yellow(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
-        for (var i = 0; i < Piece_Attack_Count; i++)
+        for (var i = 0; i < _piece_Attack_Count; i++)
         {
-            var x = Random.Range(0, Cols);
-            var y = Random.Range(0, Rows);
+            var x = Random.Range(0, _cols);
+            var y = Random.Range(0, _rows);
 
             var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
             _Particles.Color_10_Piece(criatePos, _ParticleTransform);
@@ -143,10 +157,10 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_Green(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
-        for (var i = 0; i < Piece_Attack_Count; i++)
+        for (var i = 0; i < _piece_Attack_Count; i++)
         {
-            var x = Random.Range(0, Cols);
-            var y = Random.Range(0, Rows);
+            var x = Random.Range(0, _cols);
+            var y = Random.Range(0, _rows);
 
             var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
             _Particles.Color_10_Piece(criatePos, _ParticleTransform);
@@ -161,10 +175,10 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_Pink(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
-        for (var i = 0; i < Piece_Attack_Count; i++)
+        for (var i = 0; i < _piece_Attack_Count; i++)
         {
-            var x = Random.Range(0, Cols);
-            var y = Random.Range(0, Rows);
+            var x = Random.Range(0, _cols);
+            var y = Random.Range(0, _rows);
 
             var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(x, y), Width);
             _Particles.Color_10_Piece(criatePos, _ParticleTransform);
@@ -179,9 +193,9 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_Black_Destroy(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.SpecialAttackColor);
-        for (var i = 0; i < Cols; i++)
+        for (var i = 0; i < _cols; i++)
         {
-            for (var k = 0; k < Rows; k++)
+            for (var k = 0; k < _rows; k++)
             {
                 if (Pieces[i, k].GetPieceState == Piece_Type.BLACK) 
                 {
@@ -202,9 +216,9 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_HorizontalOneArray(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);
-        for (var i = 0; i < Cols; i++)
+        for (var i = 0; i < _cols; i++)
         {
-            for (var k = 0; k < Rows; k++)
+            for (var k = 0; k < _rows; k++)
             {
                 var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(k, 3), Width);
                 _Particles.Burning_Piece(criatePos, _ParticleTransform);
@@ -221,9 +235,9 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_VerticalOneArray(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);
-        for (var i = 0; i < Cols; i++)
+        for (var i = 0; i < _cols; i++)
         {
-            for (var k = 0; k < Rows; k++)
+            for (var k = 0; k < _rows; k++)
             {
                 var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);
                 _Particles.Burning_Piece(criatePos, _ParticleTransform);
@@ -239,11 +253,11 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_ObliqueCross_Cross(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);
-        for (var i = 0; i < Rows; i++)
+        for (var i = 0; i < _rows; i++)
         {
-            for (var k = 0; k < Cols; k++)
+            for (var k = 0; k < _cols; k++)
             {
-                var col = Cols - 1;
+                var col = _cols - 1;
                 var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(k, k), Width);
                 var criatePos2 = vectorReturn.GetPieceWorldPos(new Vector2(col - i, k), Width);
 
@@ -263,9 +277,9 @@ public class SpecialPieceAttack : MonoBehaviour
     public void Special_Attack_SP_Destroy_Cross(Piece[,] Pieces)
     {
         PuzzleSoundManager.Instance.SE_Selection(SE_Now.LimitCross);
-        for (var i = 0; i < Cols; i++)
+        for (var i = 0; i < _cols; i++)
         {
-            for (var k = 0; k < Rows; k++)
+            for (var k = 0; k < _rows; k++)
             {
                 Pieces[3, k].GetPieceState = Piece_Type.EMPTY;                
                 var criatePos = vectorReturn.GetPieceWorldPos(new Vector2(3, k), Width);                

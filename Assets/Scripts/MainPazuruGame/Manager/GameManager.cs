@@ -85,10 +85,12 @@ public class GameManager : MonoBehaviour
     public int GetClearNum { get => ClearNum; }
 
     //スペシャルアタックの攻撃
-    private int SpecialAttack1;
-    private int SpecialAttack2;
-    public int GetSpecialAttack1 { get => SpecialAttack1; }
-    public int GetSpecialAttack2 { get => SpecialAttack2; }
+    private int[] _specialAttacks = new int[2];
+    public int this[int index] 
+    {
+        get => _specialAttacks[index];
+        set { _specialAttacks[index] = value; }
+    }
 
     //---------------------------------------------------------------------------------------- 
     //その他
@@ -116,22 +118,23 @@ public class GameManager : MonoBehaviour
        //GameManagerのシングルトンの所得
         Instance = this;
 
-      //exeファイルにて出力するためにサイズを固定・apkで発行する場合、こちらの追加修正予定 
+       //exeファイルにて出力するためにサイズを固定・apkで発行する場合、こちらの追加修正予定 
        Screen.SetResolution(432, 768, false, 60);
       
-      //受け取った画面サイズでピースサイズの初期化を行う 
+       //受け取った画面サイズでピースサイズの初期化を行う 
       　InitScreenSize();
 
-      //選択したステージ番号をセットする
+       //選択したステージ番号をセットする
         ClearNum = PlayerPrefs.GetInt("STAGECLEARNUM", 0);
         StageNum = PlayerPrefs.GetInt("STAGENUM", 0);
 
-      //設定したウイルスセットの技の番号をセットする
-        SpecialAttack1 = PlayerPrefs.GetInt("ATTACK1", 0);
-        SpecialAttack2 = PlayerPrefs.GetInt("ATTACK2", 0);
+       //設定したウイルスセットの技の番号をセットする  
+        _specialPieceAttack.InitSpecialAttack();
+       
+       //既読チェック
         Is_Pazuru_Tutorial = PlayerPrefs.GetInt("KEY_ISREAD_PAZURU_TUTORUAL", 0);
 
-        //パズル専用サウンドに切り替え
+       //パズル専用サウンドに切り替え
         Common_Sound_Manager.Instance.Sound_Play(BGM.Stop);
     }
 
@@ -147,7 +150,7 @@ public class GameManager : MonoBehaviour
         _EnemyManager.InitEnemys(_EnemyManager.GetenemyCount);
 
         //[1]ゲームの開始コルーチン    
-        StartCoroutine(StartAction());
+        StartCoroutine(StartAction());       
     }
 
     /// <summary>
@@ -166,12 +169,8 @@ public class GameManager : MonoBehaviour
         }        
         yield return _UiManager.StartSignal(); //既読の場合はそのままスタートシグナルが開始
 
-<<<<<<< HEAD
         StartCoroutine(PieceExchangeTurnLoop());
         StartCoroutine(DebugMenu());
-=======
-        StartCoroutine(PieceExchangeTurnLoop());        
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
     }
 
 
@@ -274,7 +273,6 @@ public class GameManager : MonoBehaviour
         
         var canvassize = _Canvas.GetComponent<RectTransform>();
         canvassize.sizeDelta = new Vector2(w, h);
-<<<<<<< HEAD
     }
 
     /// <summary>
@@ -287,15 +285,8 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.D)) { GameManager.Instance._EnemyManager.GetenemyConroll.Get_NowHpPoint = 0; }
             yield return null;       
-        }
-    
+        }    
     }
 
-
-
-=======
-    }
-
->>>>>>> f061488f36f51569aa254191514fb7a1a159ec79
 }
 

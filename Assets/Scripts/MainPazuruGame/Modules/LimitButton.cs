@@ -14,8 +14,7 @@ public class LimitButton : MonoBehaviour
     public Button this[int index] //インデクサ
     {
         get => _ButtonControll[index];
-        set { _ButtonControll[index] = value; }
-    
+        set { _ButtonControll[index] = value; }    
     }
     
     //リミットボタンへのアクセス
@@ -35,20 +34,11 @@ public class LimitButton : MonoBehaviour
     public bool GetisButtonPress { get => isButtonPress; set { isButtonPress = value; } }
 
     //リミット技セットした際のセット番号
-    private int SpecialAttack1;
-    private int SpecialAttack2;
     private E_SpecialAttack SpecialAttackType;
 
     //ボタン番号
     private const int Button1 = 0;
     private const int Button2 = 1;
-
-
-    void Awake()
-   　{
-        SpecialAttack1 = PlayerPrefs.GetInt("ATTACK1", 0);
-        SpecialAttack2 = PlayerPrefs.GetInt("ATTACK2", 0);
-     }
 
     /// <summary>
     /// リミットボタンの初期化
@@ -75,14 +65,14 @@ public class LimitButton : MonoBehaviour
             if (i == 0)
             {
                 obj.transform.localPosition = new Vector3(Screen.width / 11, Screen.height / 9, 0);
-                _LimitButtonControll[i].SpecialAttackType = (E_SpecialAttack)SpecialAttack1;
-                _AttackImage[i].sprite = _LimitButtonControll[i].Sprite[(int)SpecialAttack1];
+                _LimitButtonControll[i].SpecialAttackType = (E_SpecialAttack)GameManager.Instance[0];
+                _AttackImage[i].sprite = _LimitButtonControll[i].Sprite[(int)GameManager.Instance[0]];
             }
             else 
             {
                 obj.transform.localPosition = new Vector3(Screen.width/ 3.5f , Screen.height /9, 0);
-                _LimitButtonControll[i].SpecialAttackType = (E_SpecialAttack)SpecialAttack2;
-                _AttackImage[i].sprite = _LimitButtonControll[i].Sprite[(int)SpecialAttack2];
+                _LimitButtonControll[i].SpecialAttackType = (E_SpecialAttack)GameManager.Instance[1];
+                _AttackImage[i].sprite = _LimitButtonControll[i].Sprite[(int)GameManager.Instance[1]];
             }
         }
 
