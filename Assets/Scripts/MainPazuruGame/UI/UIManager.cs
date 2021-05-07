@@ -55,7 +55,7 @@ public class UIManager : Popup
 
 
     /// <summary>
-    /// [1]警告ポップアップの表示演出
+    /// 警告ポップアップの表示演出
     /// </summary>
     /// <param name="a"></param>
     /// <returns></returns>
@@ -69,7 +69,7 @@ public class UIManager : Popup
     }
 
     /// <summary>
-    ///  [2]初めてパズルパートをプレイする際にチュートリアルを表示する・既読チェックがついてる場合は、スタート開始する
+    ///  初めてパズルパートをプレイする際にチュートリアルを表示する・既読チェックがついてる場合は、スタート開始する
     /// </summary>
     /// <returns></returns>
     public IEnumerator Popup_TutorialStart()
@@ -89,17 +89,20 @@ public class UIManager : Popup
 
 
     /// <summary>
-    ///  [3]スタート開始の合図のコルーチン
+    ///  スタート開始の合図のコルーチン
     /// </summary>
     /// <returns></returns>
     public IEnumerator StartSignal()
     {
-        SignalPopup("FIRST 1/3", _SignalTransform);
+        var dispplayenemynowcount = GameManager.Instance.GetEnemyManager.GetenemyCount;
+        var displayenemycount = GameManager.Instance.GetEnemyManager.GetEnemyStatus.GetEnemyRowsCount - 1;
+
+        SignalPopup("Stage" + dispplayenemynowcount.ToString() + "/" + displayenemycount.ToString(), GameManager.Instance.GetUIManager.GetrectTransform);
         yield return new WaitForSeconds(4.0f);      
     }
 
     /// <summary>
-    /// [13]クリア画面
+    /// クリア画面
     /// </summary>
     /// <returns></returns>
     public IEnumerator Clear()
@@ -118,7 +121,7 @@ public class UIManager : Popup
     }
 
     /// <summary>
-    /// [14]ゲームオーバー画面
+    /// ゲームオーバー画面
     /// </summary>
     /// <returns></returns>
     public IEnumerator GameOver()
