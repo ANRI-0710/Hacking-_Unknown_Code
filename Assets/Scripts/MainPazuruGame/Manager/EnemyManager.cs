@@ -14,7 +14,6 @@ public class EnemyManager : MonoBehaviour
     //敵のステータス（敵データが格納された構造体をそれぞれのクラス・変数に代入する）
     [SerializeField]
     private Enemy_Status _EnemyStatus;
-    public Enemy_Status GetEnemyStatus { get => _EnemyStatus;}
 
     //敵の攻撃パターンを管理するクラスへのアクセス
     [SerializeField]
@@ -75,8 +74,7 @@ public class EnemyManager : MonoBehaviour
                 _enemyCount++;
                 GameManager.Instance.GetParticle.EnemyPop(GameManager.Instance.GetParticle.GetParticleTransform);
 
-                var displayenemycount = _EnemyStatus.GetEnemyRowsCount - 1;
-                GameManager.Instance.GetUIManager.SignalPopup("Stage"+ _enemyCount.ToString() + "/" + displayenemycount.ToString(), GameManager.Instance.GetUIManager.GetrectTransform);
+                GameManager.Instance.GetUIManager.SignalPopup("Stage"+ _enemyCount.ToString() + "/" + _EnemyStatus.GetEnemyRowsCount.ToString(), GameManager.Instance.GetUIManager.GetrectTransform);
                 PuzzleSoundManager.Instance.SE_Selection(SE_Now.EnemyAppearance);
                 yield return new WaitForSeconds(3.0f);
 

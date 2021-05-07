@@ -219,7 +219,7 @@ public class PieceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// アンチウイルスパズル（じゃまPiece）が一番下列にある場合、爆発処理をする
+    /// [6]アンチウイルスパズル（じゃまPiece）が一番下列にある場合、爆発処理をする
     /// </summary>
     /// <returns></returns>
     public IEnumerator ObstaclePieceCheck()
@@ -238,7 +238,7 @@ public class PieceManager : MonoBehaviour
     }
 
     /// <summary>
-    ///全ピースの状態を4方向に確認。３つ以上揃っていたらリストに入れてEMPTYフラグ（= Destroyフラグ）を立てる
+    ///[7]全ピースの状態を4方向に確認。３つ以上揃っていたらリストに入れてEMPTYフラグ（= Destroyフラグ）を立てる
     /// </summary>
     /// <returns></returns>
     public IEnumerator DestroyPieceCheak()
@@ -497,11 +497,6 @@ public class PieceManager : MonoBehaviour
         yield break;
     }
 
-    /// <summary>
-    /// ピースが3つ揃っている場合、揃ったピースの攻撃カウント/コンボ表示/爆破演出を行う
-    /// </summary>
-    /// <param name="piecetype"></param>
-    /// <returns></returns>
     private IEnumerator PieceChangeAction(Piece_Type piecetype)
     {
         //コンボカウントが0回の時のみ、敵からの攻撃カウントを減らす

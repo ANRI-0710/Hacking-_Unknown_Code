@@ -1425,7 +1425,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 583072180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20051862d752fc2478e2e6b3080e9df9, type: 3}
+  m_Script: {fileID: 11500000, guid: 15412e57af1e54d46b18186cff3f3c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _PieceManager: {fileID: 193413755}
@@ -8749,6 +8749,7 @@ MonoBehaviour:
   _Particles: {fileID: 8387714042612809633, guid: c5913fe922e67f6438f29327e97932ad,
     type: 3}
   _VectorReturn: {fileID: 3435873641795758204}
+  TestAttack: 0
 --- !u!1 &2100652990
 GameObject:
   m_ObjectHideFlags: 0
